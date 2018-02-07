@@ -1,0 +1,21 @@
+{
+    "name": "mindkomm/theme-lib-custom-types",
+    "type": "library",
+    "description": "Custom Post Types and Taxonomy registration helper class for WordPress themes (German only)",
+    "license": "MIT",
+    "require": {
+      "php": ">=7.0.0"
+    },
+    "autoload": {
+      "psr-4": {
+        "Theme\\": "lib/"
+      }
+    },
+    "authors": [
+        {
+            "name": "Lukas Gaechter",
+            "email": "lukas.gaechter@mind.ch",
+            "homepage": "https://www.mind.ch"
+        }
+    ]
+}
