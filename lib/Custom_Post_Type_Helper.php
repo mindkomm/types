@@ -21,19 +21,25 @@ class Custom_Post_Type_Helper {
 	 */
 	public static function register_post_types( $post_types ) {
 		foreach ( $post_types as $name => $post_type ) {
-			$default_args = [
+			$args = wp_parse_args( $post_type['args'], [
 				'description'       => $post_type['name_plural'],
 				'public'            => false,
 				'show_ui'           => true,
 				'show_in_nav_menus' => true,
-			];
-
-			$args = wp_parse_args( $post_type['args'], $default_args );
+			] );
 
 			$labels = self::get_post_type_labels(
 				$post_type['name_singular'],
 				$post_type['name_plural']
 			);
+
+			if ( isset( $post_type['query'] ) ) {
+				( new Custom_Post_Type_Query( $name, $post_type['query'] ) )->init();
+			}
+
+			if ( isset( $post_type['admin_columns'] ) ) {
+				( new Custom_Post_Type_Columns( $name, $post_type['admin_columns'] ) )->init();
+			}
 
 			add_filter( "post_type_labels_{$name}", function() use ( $labels ) {
 				return $labels;
