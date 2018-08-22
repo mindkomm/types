@@ -88,17 +88,15 @@ class Post_Slug {
 			return $data;
 		}
 
-		$callback = $this->post_types[ $post_type ]['callback'];
-
 		// Bailout if no callback could be found.
 		if ( ! in_array( $post_type, array_keys( $this->post_types ), true )
-			|| ! is_callable( $callback )
+			|| ! is_callable( $this->post_types[ $post_type ]['callback'] )
 		) {
 			return $data;
 		}
 
 		// Filter post slug through user-defined callback.
-		$post_slug = call_user_func( $callback, $post_slug, $postarr, $post_id );
+		$post_slug = call_user_func( $this->post_types[ $post_type ]['callback'], $post_slug, $postarr, $post_id );
 
 		// Make sure the post slug is sanitized and unique.
 		$post_slug = sanitize_title( $post_slug );
