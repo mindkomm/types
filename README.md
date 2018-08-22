@@ -12,12 +12,10 @@ Custom Post Types and Taxonomy helper classes for WordPress themes.
 You can install the package via Composer:
 
 ```bash
-composer require mindkomm/theme-lib-custom-types
+composer require mindkomm/types
 ```
 
-## Usage
-
-### Register post types
+## Register post types
 
 ```php
 <?php
@@ -58,13 +56,13 @@ add_action( 'init', function() {
 } );
 ```
 
-#### Options
+### Options
 
 The `args` parameter is used for the arguments that are passed to `register_post_type`. The `name_singular` and `name_plural` parameters are used for the generating the labels in the backend.
 
 You can use more options:
 
-##### query
+#### query
 
 Arguments that are used for quering this post type in the back- and frontend. Use this to define the sort order. Here’s an example for a post type `event`, where we want to order the posts by the value of a custom field named `date_start`.
 
@@ -76,7 +74,7 @@ Arguments that are used for quering this post type in the back- and frontend. Us
 ],
 ```
 
-##### admin_columns
+#### admin_columns
 
 Arguments that are used to add and remove admin columns in the backend. Pass an associative array of column names with arguments. The column name is the name of the meta field you want to display. You can pass `false` if you want to disable an existing column.
 
@@ -108,7 +106,7 @@ Here’s an example for a Custom Post Type `event`.
 
 If you need more possibilities for defining admin columns you could use the fantastic [Admin Columns](https://www.admincolumns.com/) plugin.
 
-### Register taxonomies
+## Register taxonomies
 
 ```php
 <?php
@@ -140,7 +138,7 @@ add_action( 'init', function() {
 } );
 ```
 
-#### Options
+### Options
 
 The `args` parameter is used for the arguments that are passed to `register_taxonomy`. Use the `for_post_types` parameter to assign taxonomies to certain post types. The `name_singular` and `name_plural` parameters are used for the generating the labels in the backend.
 
