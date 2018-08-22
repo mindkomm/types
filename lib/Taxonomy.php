@@ -17,7 +17,7 @@ class Taxonomy {
 	 *      @type array  $args          Arguments that get passed to taxonomy registration.
 	 * }
 	 */
-	public static function register_taxonomies( $taxonomies ) {
+	public static function register( $taxonomies = [] ) {
 		foreach ( $taxonomies as $name => $taxonomy ) {
 			$default_args = [
 				'public'            => false,

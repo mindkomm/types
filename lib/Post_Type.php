@@ -17,7 +17,7 @@ class Post_Type {
 	 *      @type array  $args          Arguments that get passed to post type registration.
 	 * }
 	 */
-	public static function register_post_types( $post_types ) {
+	public static function register( $post_types = [] ) {
 		foreach ( $post_types as $name => $post_type ) {
 			$args = wp_parse_args( $post_type['args'], [
 				'description'       => $post_type['name_plural'],
