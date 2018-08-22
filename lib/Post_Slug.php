@@ -13,7 +13,7 @@ class Post_Slug {
 	 *
 	 * @var array An associative array of post types and their callbacks.
 	 */
-	private $callbacks = [];
+	private $post_types = [];
 
 	/**
 	 * Inits hooks.
@@ -29,7 +29,40 @@ class Post_Slug {
 	 */
 	public function register( $post_types = [] ) {
 		foreach ( $post_types as $post_type => $callback ) {
-			$this->callbacks[ $post_type ] = $callback;
+			$this->post_types[ $post_type ] = [
+				'callback' => $callback,
+			];
+		}
+	}
+
+	/**
+	 * Registers date suffixes for post slugs.
+	 *
+	 * @param array $post_types An associative array of post types and their suffix args.
+	 */
+	public function register_suffix_date( $post_types = [] ) {
+		foreach ( $post_types as $post_type => $args ) {
+			$this->post_types[ $post_type ] = [
+				'callback' => function( $post_slug, $post_data, $post_id ) use ( $args ) {
+					$args = wp_parse_args( $args, [
+						'meta_key'      => 'date_start',
+						'input_format'  => 'Ymd',
+						'output_format' => 'Y-m-d',
+					] );
+
+					$meta_value = get_post_meta( $post_id, $args['meta_key'], true );
+
+					if ( ! $meta_value ) {
+						return $post_slug;
+					}
+
+					$date = \DateTime::createFromFormat( $args['input_format'], $meta_value );
+
+					$post_slug = $post_data['post_title'] . '-' . $date->format( $args['output_format'] );
+
+					return $post_slug;
+				},
+			];
 		}
 	}
 
@@ -55,15 +88,17 @@ class Post_Slug {
 			return $data;
 		}
 
+		$callback = $this->post_types[ $post_type ]['callback'];
+
 		// Bailout if no callback could be found.
-		if ( ! in_array( $post_type, array_keys( $this->callbacks ), true )
-			|| ! is_callable( $this->callbacks[ $post_type ] )
+		if ( ! in_array( $post_type, array_keys( $this->post_types ), true )
+			|| ! is_callable( $callback )
 		) {
 			return $data;
 		}
 
 		// Filter post slug through user-defined callback.
-		$post_slug = call_user_func( $this->callbacks[ $post_type ], $post_slug, $postarr, $post_id );
+		$post_slug = call_user_func( $callback, $post_slug, $postarr, $post_id );
 
 		// Make sure the post slug is sanitized and unique.
 		$post_slug = sanitize_title( $post_slug );

@@ -151,6 +151,13 @@ Sometimes you want to overwrite the post slug when a post is saved. Possible use
 - Common post duplication plugin often only add `-copy` or `-2` as a suffix to the post slug. You want to use your own pattern.
 - Multiple posts have the same name, but differ in the meta data they display. For example, event posts could have a different date. You want to add the date of the event to the post slug automatically.
 
+To initalize, you’ll need to create an instance of `Post_Slug` and call the `init()` function:
+
+```php
+$post_slugs = new Types\Post_Slug();
+$post_slugs->init();
+```
+
 Here’s an example for a custom post slug for a post type `course`, where you want the permalink to be built from the post title. In this scenario, the post title would be a course number.
 
 ```php
@@ -165,6 +172,22 @@ $post_slugs->register( [
 ```
 
 You don’t have to use `sanitize_title` in the callback, because the class uses that function internally.
+
+Here’s another example for the event post mentioned earlier:
+
+```php
+$post_slugs->register_suffix_date( [
+	'event' => [
+		'meta_key'     => 'date_start',
+	],
+] );
+```
+
+The `register_suffix_date` function is a special function that makes it easier to append a date taken from a post’s meta data and append it to the slug. The function takes an associative array of post types and their args for the function:
+
+- **meta_key** – Used to define the name of the meta key that is used. Default `date_start`.
+- **input_format** – Defines the date format of the meta value. Default `Ymd`.
+- **output_format** – Defines the output date format that should be used for the suffix. Default `Y-m-d`.
 
 ## Support
 
