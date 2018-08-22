@@ -3,9 +3,9 @@
 namespace Types;
 
 /**
- * Class Custom_Post_Type_Columns
+ * Class Post_Type_Columns
  */
-class Custom_Post_Type_Columns {
+class Post_Type_Columns {
 	/**
 	 * Post Type.
 	 *

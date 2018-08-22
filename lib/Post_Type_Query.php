@@ -3,9 +3,9 @@
 namespace Types;
 
 /**
- * Class Custom_Post_Type_Query
+ * Class Post_Type_Query
  */
-class Custom_Post_Type_Query {
+class Post_Type_Query {
 	/**
 	 * Post Type.
 	 *

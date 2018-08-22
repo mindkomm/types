@@ -3,9 +3,9 @@
 namespace Types;
 
 /**
- * Class Custom_Taxonomy_Helper
+ * Class Taxonomy
  */
-class Custom_Taxonomy_Helper {
+class Taxonomy {
 	/**
 	 * Register taxonomies based on an array definition.
 	 *

@@ -3,9 +3,9 @@
 namespace Types;
 
 /**
- * Class Custom_Post_Type_Helper
+ * Class Post_Type
  */
-class Custom_Post_Type_Helper {
+class Post_Type {
 	/**
 	 * Register post types based on an array definition.
 	 *
@@ -32,11 +32,11 @@ class Custom_Post_Type_Helper {
 			);
 
 			if ( isset( $post_type['query'] ) ) {
-				( new Custom_Post_Type_Query( $name, $post_type['query'] ) )->init();
+				( new Post_Type_Query( $name, $post_type['query'] ) )->init();
 			}
 
 			if ( isset( $post_type['admin_columns'] ) ) {
-				( new Custom_Post_Type_Columns( $name, $post_type['admin_columns'] ) )->init();
+				( new Post_Type_Columns( $name, $post_type['admin_columns'] ) )->init();
 			}
 
 			add_filter( "post_type_labels_{$name}", function() use ( $labels ) {
