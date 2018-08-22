@@ -1,6 +1,11 @@
-# Custom Types
+# Types
 
-Custom Post Types and Taxonomy registration helper class for WordPress themes. Currently, only German language (in the backend) is supported.
+Custom Post Types and Taxonomy helper classes for WordPress themes.
+
+- Register Custom Post Types and Taxonomies through an array notation. Labels will be set accordingly. Currently, only German labels are supported.
+- Change the order of posts in the front- and backend via arguments passed in the registration.
+- Change the admin columns for posts in the backend via arguments passed in the registration.
+- Make it possible to set post slugs dynamically.
 
 ## Installation
 
@@ -12,12 +17,12 @@ composer require mindkomm/theme-lib-custom-types
 
 ## Usage
 
-### Register a post type
+### Register post types
 
 ```php
 <?php
 
-use Theme\Custom_Post_Type_Helper;
+use Types\Post_Type;
 
 /**
  * Register post types for your theme.
@@ -25,10 +30,8 @@ use Theme\Custom_Post_Type_Helper;
  * Pass a an array of arrays to the registration function.
  */
 add_action( 'init', function() {
-    Custom_Post_Type_Helper::register_post_types( [
-        /**
-         * Always use an English lowercase singular name to name a post type.
-         */
+    Post_Type::register( [
+        // Always use an English lowercase singular name to name a post type.
         'example' => [
             'name_singular' => 'Example',
             'name_plural'   => 'Examples',
@@ -105,12 +108,12 @@ Here’s an example for a Custom Post Type `event`.
 
 If you need more possibilities for defining admin columns you could use the fantastic [Admin Columns](https://www.admincolumns.com/) plugin.
 
-### Register a taxonomy
+### Register taxonomies
 
 ```php
 <?php
 
-use Theme\Custom_Taxonomy_Helper;
+use Types\Taxonomy;
 
 /**
  * Register taxonomies for your theme.
@@ -118,10 +121,8 @@ use Theme\Custom_Taxonomy_Helper;
  * Pass a an array of arrays to the registration function.
  */
 add_action( 'init', function() {
-    Custom_Taxonomy_Helper::register_taxonomies( [
-        /**
-         * Always use an English lowercase singular name to name a taxonomy.
-         */
+    Taxonomy::register( [
+        // Always use an English lowercase singular name to name a taxonomy.
         'example_tax' => [
             'name_singular'  => 'Example Category',
             'name_plural'    => 'Example Categories',
@@ -142,6 +143,28 @@ add_action( 'init', function() {
 #### Options
 
 The `args` parameter is used for the arguments that are passed to `register_taxonomy`. Use the `for_post_types` parameter to assign taxonomies to certain post types. The `name_singular` and `name_plural` parameters are used for the generating the labels in the backend.
+
+## Customize a post slug
+
+Sometimes you want to overwrite the post slug when a post is saved. Possible use cases:
+
+- Common post duplication plugin often only add `-copy` or `-2` as a suffix to the post slug. You want to use your own pattern.
+- Multiple posts have the same name, but differ in the meta data they display. For example, event posts could have a different date. You want to add the date of the event to the post slug automatically.
+
+Here’s an example for a custom post slug for a post type `course`, where you want the permalink to be built from the post title. In this scenario, the post title would be a course number.
+
+```php
+$post_slugs = new Types\Post_Slug();
+$post_slugs->init();
+
+$post_slugs->register( [
+    'course' => function( $post_slug, $post_data, $post_id ) {
+        return $post_data['post_title'];
+    },
+] );
+```
+
+You don’t have to use `sanitize_title` in the callback, because the class uses that function internally.
 
 ## Support
 

@@ -1,4 +1,11 @@
-# Custom Types
+# Types
+
+## 2.0.0 - 2018-08-22
+
+- Renamed package from «Custom Types» to just «Types».
+- Renamed classes.
+- Renamed registration methods.
+- Added helper class to customize post slugs when posts are saved.
 
 ## 1.1.0 - 2018-08-21
 
