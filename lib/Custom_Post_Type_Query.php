@@ -1,6 +1,6 @@
 <?php
 
-namespace Theme;
+namespace Types;
 
 /**
  * Class Custom_Post_Type_Query

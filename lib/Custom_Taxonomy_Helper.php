@@ -1,11 +1,9 @@
 <?php
 
-namespace Theme;
+namespace Types;
 
 /**
  * Class Custom_Taxonomy_Helper
- *
- * @package Theme
  */
 class Custom_Taxonomy_Helper {
 	/**

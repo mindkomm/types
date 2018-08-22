@@ -1,11 +1,9 @@
 <?php
 
-namespace Theme;
+namespace Types;
 
 /**
  * Class Custom_Post_Type_Helper
- *
- * @package Theme
  */
 class Custom_Post_Type_Helper {
 	/**
