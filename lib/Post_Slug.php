@@ -76,17 +76,17 @@ class Post_Slug {
 	 */
 	public function customize_slug( $data, $postarr ) {
 		$bailout_states = [ 'draft', 'pending', 'auto-draft' ];
-
-		$post_id     = $postarr['ID'];
-		$post_type   = $postarr['post_type'];
-		$post_status = $postarr['post_status'];
-		$post_slug   = $postarr['post_name'];
-		$post_parent = $postarr['post_parent'];
+		$post_status    = $postarr['post_status'];
 
 		// Bailout if it’s not the right state.
 		if ( in_array( $post_status, $bailout_states, true ) ) {
 			return $data;
 		}
+
+		$post_id     = $postarr['ID'];
+		$post_type   = $postarr['post_type'];
+		$post_slug   = $postarr['post_name'];
+		$post_parent = $postarr['post_parent'];
 
 		// Bailout if no callback could be found.
 		if ( ! in_array( $post_type, array_keys( $this->post_types ), true )
