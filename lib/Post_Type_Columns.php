@@ -45,6 +45,7 @@ class Post_Type_Columns {
 					'title'     => '',
 					'type'      => 'default',
 					'transform' => null,
+					'sortable'  => true,
 				] );
 			}
 
@@ -57,7 +58,7 @@ class Post_Type_Columns {
 	 */
 	public function init() {
 		add_filter( 'manage_edit-' . $this->post_type . '_columns', [ $this, 'columns' ] );
-		add_filter( 'manage_edit-' . $this->post_type . '_sortable_columns', [ $this, 'columns' ] );
+		add_filter( 'manage_edit-' . $this->post_type . '_sortable_columns', [ $this, 'columns_sortable' ] );
 		add_action( 'manage_' . $this->post_type . '_posts_custom_column', [
 			$this,
 			'column_content',
@@ -65,11 +66,11 @@ class Post_Type_Columns {
 	}
 
 	/**
-	 * Adapt columns for post list view.
+	 * Filters columns for post list view.
 	 *
 	 * @param array $columns An array of existing columns.
 	 *
-	 * @return array
+	 * @return array Filtered array.
 	 */
 	public function columns( $columns ) {
 		foreach ( $this->columns as $slug => $column ) {
@@ -84,6 +85,20 @@ class Post_Type_Columns {
 
 		return $columns;
 	}
+
+	/**
+	 * Filters sortable columns.
+	 *
+	 * @param array $columns An array of existing columns.
+	 *
+	 * @return array Filtered array.
+	 */
+	public function columns_sortable( $columns ) {
+		foreach ( $this->columns as $slug => $column ) {
+			// Remove columns when its not sortable
+			if ( ! $column['sortable'] ) {
+				unset( $columns[ $slug ] );
+				continue;
 			}
 		}
 
