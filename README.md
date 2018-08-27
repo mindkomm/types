@@ -104,6 +104,19 @@ Here’s an example for a Custom Post Type `event`.
 ],
 ```
 
+##### thumbnail
+
+Use this key to display the featured image thumbnail for a post. You can also set the width and height.
+
+```php
+'location' => [
+    'thumbnail'    => [
+        'width'  => 80,
+        'height' => 80,
+    ],
+],
+```
+
 If you need more possibilities for defining admin columns you could use the fantastic [Admin Columns](https://www.admincolumns.com/) plugin.
 
 ## Register taxonomies

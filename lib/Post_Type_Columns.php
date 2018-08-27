@@ -69,7 +69,14 @@ class Post_Type_Columns {
 				continue;
 			}
 
-			$columns[ $slug ] = $column['title'];
+			// Set default title for thumbnail.
+			if ( 'thumbnail' === $slug ) {
+				$columns[ $slug ] = __( 'Beitragsbild' );
+			}
+
+			if ( isset( $column['title'] ) ) {
+				$columns[ $slug ] = $column['title'];
+			}
 		}
 
 		return $columns;
@@ -90,6 +97,30 @@ class Post_Type_Columns {
 		}
 
 		$column = $this->columns[ $column_name ];
+
+		if ( 'thumbnail' === $column_name ) {
+			$src = get_post_thumbnail_src( $post_id, 'thumbnail' );
+
+			if ( empty( $src ) ) {
+				return;
+			}
+
+			$styles = '';
+
+			foreach ( [ 'width', 'height' ] as $attr ) {
+				if ( isset( $column[ $attr ] ) ) {
+					$styles .= $attr . ':' . $column[ $attr ] . 'px;';
+				}
+			}
+
+			if ( ! empty( $styles ) ) {
+				$styles = ' style="' . $styles . '"';
+			}
+
+			echo '<img src="' . esc_attr( $src ) . '"' . $styles . '>';
+
+			return;
+		}
 
 		if ( 'acf' === $column['type'] ) {
 			$value = get_field( $column_name, $post_id );
