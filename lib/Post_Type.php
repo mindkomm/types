@@ -51,6 +51,19 @@ class Post_Type {
 	}
 
 	/**
+	 * Registers admin column settings for a post type.
+	 *
+	 * @param array $post_types An associative array of post types, where the name of the post type
+	 *                          is the key of an array that defines the admin column settings for
+	 *                          this post type.
+	 */
+	public static function admin_columns( $post_types = [] ) {
+		foreach ( $post_types as $name => $column_settings ) {
+			( new Post_Type_Columns( $name, $column_settings ) )->init();
+		}
+	}
+
+	/**
 	 * Get German labels for post type based on singular and plural name.
 	 *
 	 * @link https://developer.wordpress.org/reference/functions/get_post_type_labels/

@@ -142,6 +142,26 @@ add_action( 'init', function() {
 
 The `args` parameter is used for the arguments that are passed to `register_taxonomy`. Use the `for_post_types` parameter to assign taxonomies to certain post types. The `name_singular` and `name_plural` parameters are used for the generating the labels in the backend.
 
+## Change admin column settings for existing post type
+
+To change the admin column settings for existing post types like `post` or `page`, you can use the `admin_columns()` function, which accepts an associative of post types and their admin column settings.
+
+Here’s an example that disables the date, comments and author columns and adds a thumbnail instead:
+
+```php
+Types\Post_Type::admin_columns( [
+    'page' => [
+        'date'         => false,
+        'comments'     => false,
+        'author'       => false,
+        'thumbnail'    => [
+            'width'  => 80,
+            'height' => 80,
+        ],
+    ],
+] );
+```
+
 ## Customize a post slug
 
 Sometimes you want to overwrite the post slug when a post is saved. Possible use cases:
