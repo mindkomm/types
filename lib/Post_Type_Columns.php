@@ -31,6 +31,16 @@ class Post_Type_Columns {
 
 		foreach ( $columns as $slug => $column ) {
 			if ( false !== $column ) {
+				// Set defaults for thumbnail.
+				if ( 'thumbnail' === $slug ) {
+					$column = wp_parse_args( $column, [
+						'title'  => __( 'Beitragsbild' ),
+						'width'  => 80,
+						'height' => 80,
+					] );
+				}
+
+				// Set defaults for each field.
 				$column = wp_parse_args( $column, [
 					'title'     => '',
 					'type'      => 'default',
@@ -69,13 +79,11 @@ class Post_Type_Columns {
 				continue;
 			}
 
-			// Set default title for thumbnail.
-			if ( 'thumbnail' === $slug ) {
-				$columns[ $slug ] = __( 'Beitragsbild' );
-			}
+			$columns[ $slug ] = $column['title'];
+		}
 
-			if ( isset( $column['title'] ) ) {
-				$columns[ $slug ] = $column['title'];
+		return $columns;
+	}
 			}
 		}
 
