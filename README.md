@@ -76,10 +76,7 @@ Arguments that are used for quering this post type in the back- and frontend. Us
 
 #### admin_columns
 
-Arguments that are used to add and remove admin columns in the backend. Pass an associative array of column names with arguments. The column name is the name of the meta field you want to display. You can pass `false` if you want to disable an existing column.
-
-- **title** – The title to use for the column.
-- **transform** – The function to use on the value that is displayed. The function defined here will get a `$value` parameter that you can transform. E.g., if you have a post ID saved in post meta, you could display the post’s title.
+Arguments that are used to add and remove admin columns in the backend. Pass an associative array of column names with arguments. The column name is the name of the meta field you want to display.
 
 Here’s an example for a Custom Post Type `event`.
 
@@ -97,22 +94,38 @@ Here’s an example for a Custom Post Type `event`.
     ],
     'location'   => [
         'title'     => 'Ort',
-        'transform' => function( $value ) {
-            return get_the_title( $value );
+        'sortable'  => false,
+        'transform' => function( $post_id ) {
+            return get_the_title( $post_id );
         },
     ],
 ],
 ```
 
+You can pass `false` if you want to disable an existing column. These are the possible arguments:
+
+- **title** – *(string)* The title to use for the column. Default empty.
+- **transform** – *(callable)* The function to use on the value that is displayed. The function defined here will get a `$value` parameter that you can transform. E.g., if you have a post ID saved in post meta, you could display the post’s title. Default `null`.
+- **type** – *(string)* The type for the column. You can set this to `acf` if you use Advanced Custom Fields and want to apply its filters to the value. Default `default`.
+- **sortable** – *(bool)* Whether the column is sortable. Default `true`.
+
 ##### thumbnail
 
-Use this key to display the featured image thumbnail for a post. You can also set the width and height.
+Use this key to display the featured image thumbnail for a post.
+
+```php
+'location' => [
+    'thumbnail' => true,
+],
+```
+
+You can also set the width and height. The defaults are `80` &times; `80` pixels.
 
 ```php
 'location' => [
     'thumbnail'    => [
-        'width'  => 80,
-        'height' => 80,
+        'width'  => 100,
+        'height' => 100,
     ],
 ],
 ```
