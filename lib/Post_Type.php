@@ -7,14 +7,17 @@ namespace Types;
  */
 class Post_Type {
 	/**
-	 * Register post types based on an array definition.
+	 * Registers post types based on an array definition.
 	 *
 	 * @param array $post_types {
-	 *      An array of arrays for post types, where the name of the post type is the key of an array.
+	 *      An associative array of post types, where the name of the post type is the key of an
+	 *      array.
 	 *
 	 *      @type string $name_singular Singular name for post type.
 	 *      @type string $name_plural   Plural name for post type.
 	 *      @type array  $args          Arguments that get passed to post type registration.
+	 *      @type array  $query         Custom query parameters for frontend and backend query.
+	 *      @type array  $admin_columns An array of admin_column definitions.
 	 * }
 	 */
 	public static function register( $post_types = [] ) {
