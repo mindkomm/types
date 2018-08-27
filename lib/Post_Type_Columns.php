@@ -155,6 +155,6 @@ class Post_Type_Columns {
 			$value = call_user_func( $column['transform'], $value, $post_id );
 		}
 
-		echo esc_html( $value );
+		echo $value;
 	}
 }
