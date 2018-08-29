@@ -63,7 +63,9 @@ class Post_Type {
 						return $defaults;
 					}
 
-					return wp_parse_args( $args['args'], $defaults );
+					$args = wp_parse_args( $args['args'], $defaults );
+
+					return $args;
 				}, 10, 2 );
 			}
 		}
