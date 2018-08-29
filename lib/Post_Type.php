@@ -12,8 +12,7 @@ class Post_Type {
 	 * @since 2.0.0
 	 *
 	 * @param array $post_types {
-	 *      An associative array of post types, where the name of the post type is the key of an
-	 *      array.
+	 *      An associative array of post types and the arguments used for registering the post type.
 	 *
 	 *      @type string $name_singular Singular name for post type.
 	 *      @type string $name_plural   Optional. Plural name for post type. If not set, will be the
@@ -24,9 +23,9 @@ class Post_Type {
 	 * }
 	 */
 	public static function register( $post_types = [] ) {
-		foreach ( $post_types as $name => $args ) {
+		foreach ( $post_types as $post_type => $args ) {
 			$args = self::parse_args( $args );
-			self::register_extensions( $name, $args );
+			self::register_extensions( $post_type, $args );
 
 			// Defaults for post registration.
 			$args = wp_parse_args( $args['args'], [
@@ -36,7 +35,7 @@ class Post_Type {
 				'show_in_nav_menus' => true,
 			] );
 
-			register_post_type( $name, $args );
+			register_post_type( $post_type, $args );
 		}
 	}
 
@@ -50,21 +49,23 @@ class Post_Type {
 	 * @see register_post_type()
 	 * @since 2.2.0
 	 *
-	 * @param string $post_type The post type to update.
-	 * @param array  $args      The updated settings.
+	 * @param array $post_types An associative array of post types and its arguments that should be updated. See the
+	 *                          `register()` function for all the arguments that you can use.
 	 */
-	public static function update( $post_type, $args ) {
-		$args = self::parse_args( $args );
-		self::register_extensions( $post_type, $args );
+	public static function update( $post_types = [] ) {
+		foreach ( $post_types as $post_type => $args ) {
+			$args = self::parse_args( $args );
+			self::register_extensions( $post_type, $args );
 
-		if ( isset( $args['args'] ) ) {
-			add_filter( 'register_post_type_args', function( $defaults, $name ) use ( $post_type, $args ) {
-				if ( $post_type !== $name ) {
-					return $defaults;
-				}
+			if ( isset( $args['args'] ) ) {
+				add_filter( 'register_post_type_args', function( $defaults, $name ) use ( $post_type, $args ) {
+					if ( $post_type !== $name ) {
+						return $defaults;
+					}
 
-				return wp_parse_args( $args['args'], $defaults );
-			}, 10, 2 );
+					return wp_parse_args( $args['args'], $defaults );
+				}, 10, 2 );
+			}
 		}
 	}
 
