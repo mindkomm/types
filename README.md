@@ -132,6 +132,36 @@ You can also set the width and height. The defaults are `80` &times; `80` pixels
 
 If you need more possibilities for defining admin columns you could use the fantastic [Admin Columns](https://www.admincolumns.com/) plugin.
 
+## Update existing post types
+
+### Rename a post type
+
+Sometimes you might want to rename an existing post type to better reflect what it’s used for.
+
+**functions.php**
+
+```php
+Types\Post_Type::rename( 'post', 'Artikel', 'Artikel' );
+```
+
+The `rename()` function accepts a post type as the first parameter, the new singular name of the post type as a second parameter and the plural name of the post type as a third parameter. Make sure you use this function before the `init` hook.
+
+### Change settings for a post type
+
+Use the `update()` function to change the settings for an existing post type. Here’s an example for changing the settings for posts to make them not directly accessible in public.
+
+**functions.php**
+
+```php
+Types\Post_Type::update( 'post', [
+    'public'            => false,
+    'show_ui'           => true,
+    'show_in_nav_menus' => true,
+] );
+```
+
+The `update()` function accepts a post type as the first parameter and an array of settings to update as the second parameter. Make sure you use this function before the `init` hook.
+
 ## Register taxonomies
 
 ```php

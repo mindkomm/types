@@ -51,6 +51,53 @@ class Post_Type {
 	}
 
 	/**
+	 * Updates settings for a post type.
+	 *
+	 * For a list of settings that you can change, refer to the `register_post_type()` function.
+	 *
+	 * Run this function before the `init` hook.
+	 *
+	 * @see register_post_type()
+	 *
+	 * @param string $post_type The post type to update.
+	 * @param array  $settings  The updated settings.
+	 */
+	public static function update( $post_type, $settings = [] ) {
+		add_filter( 'register_post_type_args', function( $args, $name ) use ( $post_type, $settings ) {
+			if ( $post_type !== $name ) {
+				return $args;
+			}
+
+			$args = wp_parse_args( $settings, $args );
+
+			return $args;
+		}, 10, 2 );
+	}
+
+	/**
+	 * Renames a post type.
+	 *
+	 * Run this function before the `init` hook.
+	 *
+	 * @param string $post_type     The post type to rename.
+	 * @param string $name_singular The new singular name.
+	 * @param string $name_plural   The new plural name.
+	 */
+	public static function rename( $post_type, $name_singular, $name_plural ) {
+		if ( ! post_type_exists( $post_type ) ) {
+			return;
+		}
+
+		// Get new post type labels
+		$labels = self::get_post_type_labels( $name_singular, $name_plural );
+
+		// Use filter to set labels for posts to make sure that any missing labels are included as well.
+		add_filter( "post_type_labels_{$post_type}", function() use ( $labels ) {
+			return $labels;
+		} );
+	}
+
+	/**
 	 * Registers admin column settings for a post type.
 	 *
 	 * @param array $post_types An associative array of post types, where the name of the post type
@@ -64,7 +111,7 @@ class Post_Type {
 	}
 
 	/**
-	 * Get German labels for post type based on singular and plural name.
+	 * Gets German labels for a post type based on singular and plural name.
 	 *
 	 * @link https://developer.wordpress.org/reference/functions/get_post_type_labels/
 	 *
