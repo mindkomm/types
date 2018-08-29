@@ -27,13 +27,8 @@ class Post_Type_Query {
 	 * @param array  $query_args Arguments used for WP_Query.
 	 */
 	public function __construct( $post_type, $query_args ) {
-		$this->post_type = $post_type;
-
-		foreach ( [ 'frontend', 'backend' ] as $query_type ) {
-			$this->query_args[ $query_type ] = isset( $query_args[ $query_type ] )
-				? $query_args[ $query_type ]
-				: $query_args;
-		}
+		$this->post_type  = $post_type;
+		$this->query_args = $this->parse_query_args( $query_args );
 	}
 
 	/**
@@ -41,6 +36,35 @@ class Post_Type_Query {
 	 */
 	public function init() {
 		add_action( 'pre_get_posts', [ $this, 'pre_get_posts' ] );
+	}
+
+	/**
+	 * Parses the query args.
+	 *
+	 * Returns an associative array with key `frontend` and `backend` that each contain query
+	 * settings.
+	 *
+	 * @since 2.2.0
+	 *
+	 * @param array $args An array of query args.
+	 *
+	 * @return array An array of query args.
+	 */
+	public function parse_query_args( $args ) {
+		$query_args = [
+			'frontend' => $args,
+			'backend'  => $args,
+		];
+
+		if ( isset( $args['frontend'] ) || isset( $args['backend'] ) ) {
+			foreach ( [ 'frontend', 'backend' ] as $query_type ) {
+				$query_args[ $query_type ] = isset( $args[ $query_type ] )
+					? $args[ $query_type ]
+					: [];
+			}
+		}
+
+		return $query_args;
 	}
 
 	/**
@@ -71,10 +95,10 @@ class Post_Type_Query {
 		}
 
 		// Differ between frontend and backend queries.
-		if ( is_admin() ) {
-			$query_args = $this->query_args['backend'];
-		} else {
-			$query_args = $this->query_args['frontend'];
+		$query_args = $this->query_args[ is_admin() ? 'backend' : 'frontend' ];
+
+		if ( empty( $query_args ) ) {
+			return;
 		}
 
 		// Set query args.
