@@ -1,0 +1,138 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2018-08-29T12:44:39+00:00\n"
+"PO-Revision-Date: 2018-08-29T12:44:39+00:00\n"
+"X-Generator: WP-CLI 2.0.1\n"
+"X-Domain: mind/types\n"
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:49
+msgid "Add New %s"
+msgstr ""
+
+#. translators: %s: Plural post type name
+#: lib/Post_Type_Labels.php:51
+msgid "All %s"
+msgstr ""
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:53
+msgid "%s Archives"
+msgstr ""
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:55
+msgid "%s Attributes"
+msgstr ""
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:57
+msgid "Edit %s"
+msgstr ""
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:59
+msgid "Featured Image for %s"
+msgstr ""
+
+#. translators: %s: Plural post type name
+#: lib/Post_Type_Labels.php:61
+msgid "Filter %s list"
+msgstr ""
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:63
+msgid "Insert into %s"
+msgstr ""
+
+#. translators: %s: Plural post type name
+#: lib/Post_Type_Labels.php:65
+msgid "%s list"
+msgstr ""
+
+#. translators: %s: Plural post type name
+#: lib/Post_Type_Labels.php:67
+msgid "%s list navigation"
+msgstr ""
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:69
+msgid "New %s"
+msgstr ""
+
+#. translators: %s: Plural post type name
+#: lib/Post_Type_Labels.php:71
+msgid "No %s found."
+msgstr ""
+
+#. translators: %s: Plural post type name
+#: lib/Post_Type_Labels.php:73
+msgid "No %s found in Trash."
+msgstr ""
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:75
+msgid "Parent %s"
+msgstr ""
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:77
+msgid "Parent %s:"
+msgstr ""
+
+#. translators: %s: Plural post type name
+#: lib/Post_Type_Labels.php:79
+msgid "Search %s"
+msgstr ""
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:81
+msgid "Uploaded to this %s"
+msgstr ""
+
+#. translators: %s: Singular post type name
+#. translators: %s: Plural post type name
+#: lib/Post_Type_Labels.php:83
+#: lib/Post_Type_Labels.php:85
+#: lib/Post_Type_Labels.php:118
+msgid "View %s"
+msgstr ""
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:111
+msgid "Preview %s"
+msgstr ""
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:127
+#: lib/Post_Type_Labels.php:129
+msgid "%s updated."
+msgstr ""
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:131
+msgid "%s published."
+msgstr ""
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:133
+msgid "%s saved."
+msgstr ""
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:135
+msgid "%s submitted."
+msgstr ""
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:137
+msgid "%s draft updated."
+msgstr ""
