@@ -27,8 +27,13 @@ class Post_Type_Query {
 	 * @param array  $query_args Arguments used for WP_Query.
 	 */
 	public function __construct( $post_type, $query_args ) {
-		$this->post_type  = $post_type;
-		$this->query_args = wp_parse_args( $query_args, [] );
+		$this->post_type = $post_type;
+
+		foreach ( [ 'frontend', 'backend' ] as $query_type ) {
+			$this->query_args[ $query_type ] = isset( $query_args[ $query_type ] )
+				? $query_args[ $query_type ]
+				: $query_args;
+		}
 	}
 
 	/**
@@ -49,17 +54,32 @@ class Post_Type_Query {
 		/**
 		 * Check if we should modify the query.
 		 *
-		 * We can’t use $query->is_post_type_archive(), because some post_types have 'has_archive'
-		 * set to false.
+		 * As a hint for for future condition updates: We can’t use $query->is_post_type_archive(),
+		 * because some post_types have 'has_archive' set to false.
 		 */
-		if ( ! is_admin() || ( $query->is_main_query() && $typenow === $this->post_type ) ) {
-			switch ( $query->get( 'post_type' ) ) {
-				case $this->post_type:
-					foreach ( $this->query_args as $key => $arg ) {
-						$query->set( $key, $arg );
-					}
-					break;
+		if ( ! is_admin() ) {
+			if (
+				// Special case for post in a page_for_posts setting.
+				( 'post' === $this->post_type && ! $query->is_home() )
+				// All other post types.
+				|| ( 'post' !== $this->post_type && $this->post_type !== $query->get( 'post_type' ) )
+			) {
+				return;
 			}
+		} elseif ( ! $query->is_main_query() || $typenow !== $this->post_type ) {
+			return;
+		}
+
+		// Differ between frontend and backend queries.
+		if ( is_admin() ) {
+			$query_args = $this->query_args['backend'];
+		} else {
+			$query_args = $this->query_args['frontend'];
+		}
+
+		// Set query args.
+		foreach ( $query_args as $key => $arg ) {
+			$query->set( $key, $arg );
 		}
 	}
 }
