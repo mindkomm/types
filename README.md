@@ -172,7 +172,15 @@ Types\Post_Type::update( [
 ] );
 ```
 
-The `update()` function accepts a post type as the first parameter and an array of settings to update as the second parameter. Make sure you use this function before the `init` hook.
+The `update()` function accepts an associative array of post type and its arguments. Make sure you use this function before the `init` hook.
+
+Please be aware that it’s not possible to change post type support features through the `update()` function. To remove support for an existing feature, you will have to use the `remove_post_type_support` function.
+
+```php
+add_action( 'init', function() {
+    remove_post_type_support( 'post', 'thumbnail' );
+} );
+```
 
 ### Rename a post type
 
