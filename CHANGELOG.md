@@ -1,5 +1,10 @@
 # Types
 
+## 2.1.1 - 2018-08-29
+
+- Added new function `rename()` to rename an existing post type.
+- Added new function `update()` to update the settings for an existing post type.
+
 ## 2.1.0 - 2018-08-27
 
 - Added new function `admin_columns()` to customize admin columns for already registered post types.
