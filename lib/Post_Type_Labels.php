@@ -72,7 +72,7 @@ class Post_Type_Labels {
 	 * Gets German labels for a post type based on singular and plural name.
 	 *
 	 * The following labels are not translated, because they don’t contain the post type name:
-	 * add_item, set_feature_image, remove_featured_image
+	 * set_feature_image, remove_featured_image
 	 *
 	 * @link https://developer.wordpress.org/reference/functions/get_post_type_labels/
 	 *
@@ -85,6 +85,7 @@ class Post_Type_Labels {
 		$labels = [
 			'name'                  => $name_singular,
 			'singular_name'         => $name_plural,
+			'add_new'               => __( 'Add New', 'mind/types' ),
 			/* translators: %s: Singular post type name */
 			'add_new_item'          => sprintf( __( 'Add New %s', 'mind/types' ), $name_singular ),
 			/* translators: %s: Plural post type name */

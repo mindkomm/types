@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-29T12:44:39+00:00\n"
-"PO-Revision-Date: 2018-08-29 14:45+0200\n"
+"POT-Creation-Date: 2018-08-29T15:32:24+00:00\n"
+"PO-Revision-Date: 2018-08-29 17:36+0200\n"
 "Last-Translator: Lukas Gächter <lukas.gaechter@mind.ch>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -15,125 +15,129 @@ msgstr ""
 "X-Domain: mind/types\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: lib/Post_Type_Labels.php:88
+msgid "Add New"
+msgstr "Hinzufügen"
+
 #. translators: %s: Singular post type name
-#: lib/Post_Type_Labels.php:49
+#: lib/Post_Type_Labels.php:90
 msgid "Add New %s"
-msgstr "% hinzufügen"
+msgstr "%s hinzufügen"
 
 #. translators: %s: Plural post type name
-#: lib/Post_Type_Labels.php:51
+#: lib/Post_Type_Labels.php:92
 msgid "All %s"
 msgstr "Alle %s"
 
 #. translators: %s: Singular post type name
-#: lib/Post_Type_Labels.php:53
+#: lib/Post_Type_Labels.php:94
 msgid "%s Archives"
 msgstr "Archive für %s"
 
 #. translators: %s: Singular post type name
-#: lib/Post_Type_Labels.php:55
+#: lib/Post_Type_Labels.php:96
 msgid "%s Attributes"
 msgstr "Attribute für %s"
 
 #. translators: %s: Singular post type name
-#: lib/Post_Type_Labels.php:57
+#: lib/Post_Type_Labels.php:98
 msgid "Edit %s"
 msgstr "%s bearbeiten"
 
 #. translators: %s: Singular post type name
-#: lib/Post_Type_Labels.php:59
+#: lib/Post_Type_Labels.php:100
 msgid "Featured Image for %s"
 msgstr "Beitragsbild für %s"
 
 #. translators: %s: Plural post type name
-#: lib/Post_Type_Labels.php:61
+#: lib/Post_Type_Labels.php:102
 msgid "Filter %s list"
 msgstr "% filtern"
 
 #. translators: %s: Singular post type name
-#: lib/Post_Type_Labels.php:63
+#: lib/Post_Type_Labels.php:104
 msgid "Insert into %s"
 msgstr "In %s einfügen"
 
 #. translators: %s: Plural post type name
-#: lib/Post_Type_Labels.php:65
+#: lib/Post_Type_Labels.php:106
 msgid "%s list"
 msgstr "%s"
 
 #. translators: %s: Plural post type name
-#: lib/Post_Type_Labels.php:67
+#: lib/Post_Type_Labels.php:108
 msgid "%s list navigation"
 msgstr "Navigation für %s"
 
 #. translators: %s: Singular post type name
-#: lib/Post_Type_Labels.php:69
+#: lib/Post_Type_Labels.php:110
 msgid "New %s"
 msgstr "%s hinzufügen"
 
 #. translators: %s: Plural post type name
-#: lib/Post_Type_Labels.php:71
+#: lib/Post_Type_Labels.php:112
 msgid "No %s found."
-msgstr "Keine % gefunden."
+msgstr "Keine %s gefunden."
 
 #. translators: %s: Plural post type name
-#: lib/Post_Type_Labels.php:73
+#: lib/Post_Type_Labels.php:114
 msgid "No %s found in Trash."
-msgstr "Keine % im Papierkorb gefunden."
+msgstr "Keine %s im Papierkorb gefunden."
 
 #. translators: %s: Singular post type name
-#: lib/Post_Type_Labels.php:75
+#: lib/Post_Type_Labels.php:116
 msgid "Parent %s"
 msgstr "Eltern-%s"
 
 #. translators: %s: Singular post type name
-#: lib/Post_Type_Labels.php:77
+#: lib/Post_Type_Labels.php:118
 msgid "Parent %s:"
 msgstr "Eltern-%s:"
 
 #. translators: %s: Plural post type name
-#: lib/Post_Type_Labels.php:79
+#: lib/Post_Type_Labels.php:120
 msgid "Search %s"
-msgstr "% suchen"
+msgstr "%s suchen"
 
 #. translators: %s: Singular post type name
-#: lib/Post_Type_Labels.php:81
+#: lib/Post_Type_Labels.php:122
 msgid "Uploaded to this %s"
 msgstr "Zu diesem %s hochgeladen"
 
 #. translators: %s: Singular post type name
 #. translators: %s: Plural post type name
-#: lib/Post_Type_Labels.php:83 lib/Post_Type_Labels.php:85
-#: lib/Post_Type_Labels.php:118
+#: lib/Post_Type_Labels.php:124 lib/Post_Type_Labels.php:126
+#: lib/Post_Type_Labels.php:160
 msgid "View %s"
 msgstr "%s anschauen"
 
 #. translators: %s: Singular post type name
-#: lib/Post_Type_Labels.php:111
+#: lib/Post_Type_Labels.php:153
 msgid "Preview %s"
 msgstr "%s-Vorschau ansehen"
 
 #. translators: %s: Singular post type name
-#: lib/Post_Type_Labels.php:127 lib/Post_Type_Labels.php:129
+#: lib/Post_Type_Labels.php:169 lib/Post_Type_Labels.php:171
 msgid "%s updated."
 msgstr "%s aktualisiert."
 
 #. translators: %s: Singular post type name
-#: lib/Post_Type_Labels.php:131
+#: lib/Post_Type_Labels.php:173
 msgid "%s published."
 msgstr "%s veröffentlicht."
 
 #. translators: %s: Singular post type name
-#: lib/Post_Type_Labels.php:133
+#: lib/Post_Type_Labels.php:175
 msgid "%s saved."
 msgstr "%s gespeichert."
 
 #. translators: %s: Singular post type name
-#: lib/Post_Type_Labels.php:135
+#: lib/Post_Type_Labels.php:177
 msgid "%s submitted."
 msgstr "%s übertragen."
 
 #. translators: %s: Singular post type name
-#: lib/Post_Type_Labels.php:137
+#: lib/Post_Type_Labels.php:179
 msgid "%s draft updated."
 msgstr "%s-Entwurf aktualisiert."
 
