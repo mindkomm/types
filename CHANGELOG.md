@@ -1,9 +1,10 @@
 # Types
 
-## 2.1.1 - 2018-08-29
+## 2.2.0 - 2018-08-29
 
-- Added new function `rename()` to rename an existing post type.
 - Added new function `update()` to update the settings for an existing post type.
+- Added new function `rename()` to rename an existing post type.
+- Added option to have separate queries with a `frontend` and `backend` argument for `query`.
 
 ## 2.1.0 - 2018-08-27
 

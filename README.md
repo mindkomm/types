@@ -1,11 +1,11 @@
 # Types
 
-Custom Post Types and Taxonomy helper classes for WordPress themes.
+Custom Post Types and Taxonomy helper classes for WordPress projects.
 
-- Register Custom Post Types and Taxonomies through an array notation. Labels will be set accordingly. Currently, only German labels are supported.
-- Change the order of posts in the front- and backend via arguments passed in the registration.
-- Change the admin columns for posts in the backend via arguments passed in the registration.
-- Make it possible to set post slugs dynamically.
+- Register Custom Post Types and Taxonomies through an array notation. Labels will be set accordingly. Currently, English and German languages are supported.
+- Change the query arguments for posts in the front- and backend via a list of arguments, e.g. to set a custom post order.
+- Change the admin columns for posts in the backend via a list of arguments.
+- Set post slugs dynamically when posts are saved.
 
 ## Installation
 
@@ -20,15 +20,13 @@ composer require mindkomm/types
 ```php
 <?php
 
-use Types\Post_Type;
-
 /**
  * Register post types for your theme.
  *
  * Pass a an array of arrays to the registration function.
  */
 add_action( 'init', function() {
-    Post_Type::register( [
+    Types\Post_Type::register( [
         // Always use an English lowercase singular name to name a post type.
         'example' => [
             'name_singular' => 'Example',
@@ -64,7 +62,7 @@ You can use more options:
 
 #### query
 
-Arguments that are used for quering this post type in the back- and frontend. Use this to define the sort order. Here’s an example for a post type `event`, where we want to order the posts by the value of a custom field named `date_start`.
+Arguments that are used for quering this post type in the back- and frontend. You can use this to define the sort order. Here’s an example for a post type `event`, where we want to order the posts by the value of a custom field named `date_start`.
 
 ```php
 'query' => [
@@ -73,6 +71,25 @@ Arguments that are used for quering this post type in the back- and frontend. Us
     'order'    => 'DESC',
 ],
 ```
+
+If you want to have different queries for the front- and the backend, you can use separate `frontend` and `backend` keys:
+
+```php
+'query' => [
+    'frontend' => [
+        'meta_key' => 'date_start',
+        'orderby'  => 'meta_value_num',
+        'order'    => 'ASC',
+    ],
+    'backend'  => [
+        'meta_key' => 'date_start',
+        'orderby'  => 'meta_value_num',
+        'order'    => 'DESC',
+    ],
+],
+```
+
+If you only use one key and omit the other, then the query will only be applied to your choice.
 
 #### admin_columns
 
@@ -134,18 +151,6 @@ If you need more possibilities for defining admin columns you could use the fant
 
 ## Update existing post types
 
-### Rename a post type
-
-Sometimes you might want to rename an existing post type to better reflect what it’s used for.
-
-**functions.php**
-
-```php
-Types\Post_Type::rename( 'post', 'Artikel', 'Artikel' );
-```
-
-The `rename()` function accepts a post type as the first parameter, the new singular name of the post type as a second parameter and the plural name of the post type as a third parameter. Make sure you use this function before the `init` hook.
-
 ### Change settings for a post type
 
 Use the `update()` function to change the settings for an existing post type. Here’s an example for changing the settings for posts to make them not directly accessible in public.
@@ -153,14 +158,54 @@ Use the `update()` function to change the settings for an existing post type. He
 **functions.php**
 
 ```php
-Types\Post_Type::update( 'post', [
-    'public'            => false,
-    'show_ui'           => true,
-    'show_in_nav_menus' => true,
+Types\Post_Type::update( [
+    'post' => [
+        'args' => [
+            'public'            => false,
+            'show_ui'           => true,
+            'show_in_nav_menus' => true,
+        ],
+        'admin_columns' => [
+            'date' => false,
+        ],
+    ],
 ] );
 ```
 
 The `update()` function accepts a post type as the first parameter and an array of settings to update as the second parameter. Make sure you use this function before the `init` hook.
+
+### Rename a post type
+
+Sometimes you might want to rename an existing post type to better reflect what it’s used for.
+
+**functions.php**
+
+```php
+Types\Post_Type::rename( 'post', 'Beispiel', 'Beispiele' );
+```
+
+The `rename()` function accepts a post type as the first parameter, the new singular name of the post type as a second parameter and the plural name of the post type as a third parameter. If you omit the third parameter, the second parameter will be used as the plural form instead. Make sure you use this function before the `init` hook.
+
+This is practically a shorthand function for:
+
+```php
+Types\Post_Type::update( [
+    'post' => [
+        'name_singular' => 'Beispiel',
+        'name_plural'   => 'Beispiele,
+    ],
+] );
+```
+
+If you only want to rename one of the labels, e.g. the menu label, you can use the `post_type_labels_{$post_type}` filter. Here’s an example for changing the menu name for posts:
+
+```php
+add_filter( 'post_type_labels_post', function( $labels ) {
+    $labels->menu_name = 'Aktuelles';
+
+    return $labels;
+}, 11 );
+```
 
 ## Register taxonomies
 
@@ -251,9 +296,9 @@ Here’s another example for the event post mentioned earlier:
 
 ```php
 $post_slugs->register_suffix_date( [
-	'event' => [
-		'meta_key'     => 'date_start',
-	],
+    'event' => [
+        'meta_key' => 'date_start',
+    ],
 ] );
 ```
 
