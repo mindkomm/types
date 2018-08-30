@@ -147,18 +147,22 @@ class Post_Type_Labels {
 		$permalink   = get_permalink( $post_id );
 
 		// Preview post link.
-		$preview_post_link_html = sprintf( ' <a target="_blank" href="%1$s">%2$s</a>',
-			esc_url( $preview_url ),
-			/* translators: %s: Singular post type name */
-			sprintf( __( 'Preview %s', 'mind/types' ), $this->name_singular )
-		);
+		$preview_post_link_html = is_post_type_viewable( $this->post_type )
+			? sprintf( ' <a target="_blank" href="%1$s">%2$s</a>',
+				esc_url( $preview_url ),
+				/* translators: %s: Singular post type name */
+				sprintf( __( 'Preview %s', 'mind/types' ), $this->name_singular )
+			)
+			: '';
 
 		// View post link.
-		$view_post_link_html = sprintf( ' <a href="%1$s">%2$s</a>',
-			esc_url( $permalink ),
-			/* translators: %s: Singular post type name */
-			sprintf( __( 'View %s', 'mind/types' ), $this->name_singular )
-		);
+		$view_post_link_html = is_post_type_viewable( $this->post_type )
+			? sprintf( ' <a href="%1$s">%2$s</a>',
+				esc_url( $permalink ),
+				/* translators: %s: Singular post type name */
+				sprintf( __( 'View %s', 'mind/types' ), $this->name_singular )
+			)
+			: '';
 
 		/**
 		 * Message indices 2, 3, 5 and 9 are not handled, because they are edge cases or they would be too difficult
