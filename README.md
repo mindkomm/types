@@ -7,6 +7,23 @@ Custom Post Types and Taxonomy helper classes for WordPress projects.
 - Change the admin columns for posts in the backend via a list of arguments.
 - Set post slugs dynamically when posts are saved.
 
+## Table of Contents
+
+- [Installation](#installation)
+- [Register post types](#register-post-types)
+- [Update existing post types](#update-existing-post-types)
+	- [Change settings for a post type](#change-settings-for-a-post-type)
+	- [Change post type support](#change-post-type-support)
+	- [Rename a post type](#rename-a-post-type)
+	- [Change admin column settings for existing post type](#change-admin-column-settings-for-existing-post-type)
+- [Register taxonomies](#register-taxonomies)
+	- [Options](#options)
+- [Update existing taxonomies](#update-existing-taxonomies)
+	- [Change settings for a taxonomy](#change-settings-for-a-taxonomy)
+	- [Rename a taxonomy](#rename-a-taxonomy)
+	- [Unregister taxonomies](#unregister-taxonomies)
+- [Customize a post slug](#customize-a-post-slug)
+
 ## Installation
 
 You can install the package via Composer:
@@ -54,13 +71,11 @@ add_action( 'init', function() {
 } );
 ```
 
-### Options
-
 The `args` parameter is used for the arguments that are passed to `register_post_type`. The `name_singular` and `name_plural` parameters are used for the generating the labels in the backend.
 
 You can use more options:
 
-#### query
+### query
 
 Arguments that are used for quering this post type in the back- and frontend. You can use this to define the sort order. Here’s an example for a post type `event`, where we want to order the posts by the value of a custom field named `date_start`.
 
@@ -91,7 +106,7 @@ If you want to have different queries for the front- and the backend, you can us
 
 If you only use one key and omit the other, then the query will only be applied to your choice.
 
-#### admin_columns
+### admin_columns
 
 Arguments that are used to add and remove admin columns in the backend. Pass an associative array of column names with arguments. The column name is the name of the meta field you want to display.
 
@@ -126,7 +141,7 @@ You can pass `false` if you want to disable an existing column. These are the po
 - **type** – *(string)* The type for the column. You can set this to `acf` if you use Advanced Custom Fields and want to apply its filters to the value. Default `default`.
 - **sortable** – *(bool)* Whether the column is sortable. Default `true`.
 
-##### thumbnail
+#### thumbnail
 
 Use this key to display the featured image thumbnail for a post.
 
@@ -174,12 +189,20 @@ Types\Post_Type::update( [
 
 The `update()` function accepts an associative array of post types and their arguments. Make sure you use this function before the `init` hook.
 
+### Change post type support
+
 Please be aware that it’s not possible to change post type support features through the `update()` function. To remove support for an existing feature, you will have to use the `remove_post_type_support` function.
 
 ```php
 add_action( 'init', function() {
     remove_post_type_support( 'post', 'thumbnail' );
 } );
+```
+
+In the same manner, if you want to add features, you should do it through the `add_post_type_support` function:
+
+```php
+add_post_type_support( 'page', 'excerpt' );
 ```
 
 ### Rename a post type
