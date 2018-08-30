@@ -290,8 +290,6 @@ add_action( 'init', function() {
 } );
 ```
 
-### Options
-
 The `args` parameter is used for the arguments that are passed to `register_taxonomy`. Use the `for_post_types` parameter to assign taxonomies to certain post types. The `name_singular` and `name_plural` parameters are used for the generating the labels in the backend.
 
 ## Update existing taxonomies
