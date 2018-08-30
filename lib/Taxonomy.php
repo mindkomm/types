@@ -12,68 +12,111 @@ class Taxonomy {
 	 * @param array $taxonomies {
 	 *      An array of arrays for taxonomies, where the name of the taxonomy is the key of an array.
 	 *
-	 *      @type string $name_singular Singular name for taxonomy.
-	 *      @type string $name_plural   Plural name for taxonomy.
-	 *      @type array  $args          Arguments that get passed to taxonomy registration.
+	 *      @type string $name_singular  Singular name for taxonomy.
+	 *      @type string $name_plural    Plural name for taxonomy.
+	 *      @type array  $for_post_types The array of post types you want to register the taxonomy for.
+	 *      @type array  $args           Arguments that get passed to taxonomy registration.
 	 * }
 	 */
 	public static function register( $taxonomies = [] ) {
-		foreach ( $taxonomies as $name => $taxonomy ) {
-			$default_args = [
+		foreach ( $taxonomies as $taxonomy => $args ) {
+			$args = self::parse_args( $args );
+			self::register_extensions( $taxonomy, $args );
+
+			$for_post_types = $args['for_post_types'];
+
+			// Defaults for taxonomy registration.
+			$args = wp_parse_args( $args['args'], [
 				'public'            => false,
 				'hierarchical'      => false,
 				'show_ui'           => true,
 				'show_admin_column' => true,
-			];
+				'show_tag_cloud'    => false,
+			] );
 
-			$args = wp_parse_args( $taxonomy['args'], $default_args );
-
-			$labels = self::get_taxonomy_labels(
-				$taxonomy['name_singular'],
-				$taxonomy['name_plural']
-			);
-
-			add_filter( "taxonomy_labels_{$name}", function() use ( $labels ) {
-				return $labels;
-			} );
-
-			register_taxonomy( $name, $taxonomy['for_post_types'], $args );
+			register_taxonomy( $taxonomy, $for_post_types, $args );
 		}
 	}
 
 	/**
-	 * Get German labels for taxonomy base on singular and plural name.
+	 * Updates settings for a taxonomy.
 	 *
-	 * @link https://developer.wordpress.org/reference/functions/get_taxonomy_labels/
+	 * Here, you use the same settings that you also use for the `register()` funciton.
 	 *
-	 * @param string $name_singular Singular name for taxonomy.
-	 * @param string $name_plural   Plural name for taxonomy.
-	 * @return array
+	 * Run this function before the `init` hook.
+	 *
+	 * @see register_taxonomy()
+	 * @since 2.2.0
+	 *
+	 * @param array $taxonomies An associative array of post types and its arguments that should be updated. See the
+	 *                          `register()` function for all the arguments that you can use.
 	 */
-	public static function get_taxonomy_labels( $name_singular, $name_plural ) {
-		return [
-			'name'                       => $name_plural,
-			'singular_name'              => $name_singular,
-			'menu_name'                  => $name_plural,
-			'search_items'               => $name_plural . ' suchen',
-			'all_items'                  => 'Alle ' . $name_plural,
-			'parent_item'                => null,
-			'parent_item_colon'          => null,
-			'edit_item'                  => $name_singular . ' bearbeiten',
-			'view_item'                  => $name_singular . ' anschauen',
-			'update_item'                => $name_singular . ' bearbeiten',
-			'add_new_item'               => $name_singular . ' hinzufügen',
-			'new_item_name'              => 'Neuer Name für ' . $name_singular,
-			'separate_items_with_commas' => 'Einträge durch Kommas abtrennen',
-			'add_or_remove_items'        => $name_plural . ' hinzufügen oder entfernen',
-			'choose_from_most_used'      => 'Wähle aus den meist verwendeten ' . $name_plural,
-			'not_found'                  => 'Keine ' . $name_plural . ' gefunden.',
-			'no_terms'                   => 'Keine ' . $name_plural,
-			'items_list_navigation'      => 'Navigation für ' . $name_plural,
-			'items_list'                 => $name_plural,
+	public static function update( $taxonomies = [] ) {
+		foreach ( $taxonomies as $taxonomy => $args ) {
+			$args = self::parse_args( $args );
+			self::register_extensions( $taxonomy, $args );
 
-			// Hide tag cloud
-			'popular_items'              => null, // 'Häufig verwendete ' . $name_plural,
-		];
+			if ( isset( $args['args'] ) ) {
+				add_filter( 'register_taxonomy_args', function( $defaults, $name ) use ( $taxonomy, $args ) {
+					if ( $taxonomy !== $name ) {
+						return $defaults;
+					}
+
+					$args = wp_parse_args( $args['args'], $defaults );
+
+					return $args;
+				}, 10, 2 );
+			}
+		}
+	}
+
+	/**
+	 * Renames a taxonomy.
+	 *
+	 * Run this function before the `init` hook.
+	 *
+	 * @since 2.2.0
+	 *
+	 * @param string $taxonomy      The taxonomy to rename.
+	 * @param string $name_singular The new singular name.
+	 * @param string $name_plural   The new plural name.
+	 */
+	public static function rename( $taxonomy, $name_singular, $name_plural ) {
+		if ( ! taxonomy_exists( $taxonomy ) ) {
+			return;
+		}
+
+		( new Taxonomy_Labels( $taxonomy, $name_singular, $name_plural ) )->init();
+	}
+
+	/**
+	 * Adds missing arguments for taxonomy.
+	 *
+	 * @since 2.2.0
+	 *
+	 * @param array $args An array of arguments.
+	 *
+	 * @return mixed
+	 */
+	private static function parse_args( $args ) {
+		if ( isset( $args['name_singular'] ) && ! isset( $args['name_plural'] ) ) {
+			$args['name_plural'] = $args['name_singular'];
+		}
+
+		return $args;
+	}
+
+	/**
+	 * Registers extensions.
+	 *
+	 * @since 2.2.0
+	 *
+	 * @param string $taxonomy The taxonomy name.
+	 * @param array  $args      Arguments for the taxonomy.
+	 */
+	private static function register_extensions( $taxonomy, $args ) {
+		if ( isset( $args['name_singular'] ) ) {
+			( new Taxonomy_Labels( $taxonomy, $args['name_singular'], $args['name_plural'] ) )->init();
+		}
 	}
 }

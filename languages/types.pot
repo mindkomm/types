@@ -8,8 +8,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2018-08-29T15:32:24+00:00\n"
-"PO-Revision-Date: 2018-08-29T15:32:24+00:00\n"
+"POT-Creation-Date: 2018-08-30T06:53:25+00:00\n"
+"PO-Revision-Date: 2018-08-30T06:53:25+00:00\n"
 "X-Generator: WP-CLI 2.0.1\n"
 "X-Domain: mind/types\n"
 
@@ -18,12 +18,16 @@ msgid "Add New"
 msgstr ""
 
 #. translators: %s: Singular post type name
+#. translators: %s: Singular taxonomy name
 #: lib/Post_Type_Labels.php:90
+#: lib/Taxonomy_Labels.php:87
 msgid "Add New %s"
 msgstr ""
 
 #. translators: %s: Plural post type name
+#. translators: %s: Plural taxonomy name
 #: lib/Post_Type_Labels.php:92
+#: lib/Taxonomy_Labels.php:91
 msgid "All %s"
 msgstr ""
 
@@ -38,7 +42,9 @@ msgid "%s Attributes"
 msgstr ""
 
 #. translators: %s: Singular post type name
+#. translators: %s: Singular taxonomy name
 #: lib/Post_Type_Labels.php:98
+#: lib/Taxonomy_Labels.php:97
 msgid "Edit %s"
 msgstr ""
 
@@ -58,12 +64,16 @@ msgid "Insert into %s"
 msgstr ""
 
 #. translators: %s: Plural post type name
+#. translators: %s: Plural taxonomy name
 #: lib/Post_Type_Labels.php:106
+#: lib/Taxonomy_Labels.php:99
 msgid "%s list"
 msgstr ""
 
 #. translators: %s: Plural post type name
+#. translators: %s: Plural taxonomy name
 #: lib/Post_Type_Labels.php:108
+#: lib/Taxonomy_Labels.php:101
 msgid "%s list navigation"
 msgstr ""
 
@@ -73,7 +83,9 @@ msgid "New %s"
 msgstr ""
 
 #. translators: %s: Plural post type name
+#. translators: %s: Plural taxonomy name
 #: lib/Post_Type_Labels.php:112
+#: lib/Taxonomy_Labels.php:107
 msgid "No %s found."
 msgstr ""
 
@@ -83,17 +95,23 @@ msgid "No %s found in Trash."
 msgstr ""
 
 #. translators: %s: Singular post type name
+#. translators: %s: Singular taxonomy name
 #: lib/Post_Type_Labels.php:116
+#: lib/Taxonomy_Labels.php:109
 msgid "Parent %s"
 msgstr ""
 
 #. translators: %s: Singular post type name
+#. translators: %s: Singular taxonomy name
 #: lib/Post_Type_Labels.php:118
+#: lib/Taxonomy_Labels.php:111
 msgid "Parent %s:"
 msgstr ""
 
 #. translators: %s: Plural post type name
+#. translators: %s: Plural taxonomy name
 #: lib/Post_Type_Labels.php:120
+#: lib/Taxonomy_Labels.php:115
 msgid "Search %s"
 msgstr ""
 
@@ -104,9 +122,11 @@ msgstr ""
 
 #. translators: %s: Singular post type name
 #. translators: %s: Plural post type name
+#. translators: %s: Singular taxonomy name
 #: lib/Post_Type_Labels.php:124
 #: lib/Post_Type_Labels.php:126
 #: lib/Post_Type_Labels.php:160
+#: lib/Taxonomy_Labels.php:121
 msgid "View %s"
 msgstr ""
 
@@ -116,8 +136,10 @@ msgid "Preview %s"
 msgstr ""
 
 #. translators: %s: Singular post type name
+#. translators: %s: Singular taxonomy name
 #: lib/Post_Type_Labels.php:169
 #: lib/Post_Type_Labels.php:171
+#: lib/Taxonomy_Labels.php:145
 msgid "%s updated."
 msgstr ""
 
@@ -139,4 +161,66 @@ msgstr ""
 #. translators: %s: Singular post type name
 #: lib/Post_Type_Labels.php:179
 msgid "%s draft updated."
+msgstr ""
+
+#. translators: %s: Plural taxonomy name
+#: lib/Taxonomy_Labels.php:89
+msgid "Add or remove %s"
+msgstr ""
+
+#. translators: %s: Plural taxonomy name
+#: lib/Taxonomy_Labels.php:93
+msgid "&larr; Back to %s"
+msgstr ""
+
+#. translators: %s: Plural taxonomy name
+#: lib/Taxonomy_Labels.php:95
+msgid "Choose from the most used %s"
+msgstr ""
+
+#. translators: %s: Singular taxonomy name
+#: lib/Taxonomy_Labels.php:103
+msgid "New %s Name"
+msgstr ""
+
+#. translators: %s: Plural taxonomy name
+#: lib/Taxonomy_Labels.php:105
+msgid "No %s"
+msgstr ""
+
+#. translators: %s: Plural taxonomy name
+#: lib/Taxonomy_Labels.php:113
+msgid "Popular %s"
+msgstr ""
+
+#. translators: %s: Plural taxonomy name
+#: lib/Taxonomy_Labels.php:117
+msgid "Separate %s with commas"
+msgstr ""
+
+#. translators: %s: Singular taxonomy name
+#: lib/Taxonomy_Labels.php:119
+msgid "Update %s"
+msgstr ""
+
+#. translators: %s: Singular taxonomy name
+#: lib/Taxonomy_Labels.php:141
+msgid "%s added."
+msgstr ""
+
+#. translators: %s: Singular taxonomy name
+#. translators: %s: Plural taxonomy name
+#: lib/Taxonomy_Labels.php:143
+#: lib/Taxonomy_Labels.php:151
+msgid "%s deleted."
+msgstr ""
+
+#. translators: %s: Singular taxonomy name
+#: lib/Taxonomy_Labels.php:147
+msgid "%s not added."
+msgstr ""
+
+#. translators: %s: Singular taxonomy name
+#: lib/Taxonomy_Labels.php:149
+msgid "%s not updated."
 msgstr ""

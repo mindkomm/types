@@ -153,7 +153,7 @@ If you need more possibilities for defining admin columns you could use the fant
 
 ### Change settings for a post type
 
-Use the `update()` function to change the settings for an existing post type. Here’s an example for changing the settings for posts to make them not directly accessible in public.
+Use the `update()` function to change the settings for an existing post type. Here’s an example for changing the settings for posts to make them not directly accessible in the frontend.
 
 **functions.php**
 
@@ -172,7 +172,7 @@ Types\Post_Type::update( [
 ] );
 ```
 
-The `update()` function accepts an associative array of post type and its arguments. Make sure you use this function before the `init` hook.
+The `update()` function accepts an associative array of post types and their arguments. Make sure you use this function before the `init` hook.
 
 Please be aware that it’s not possible to change post type support features through the `update()` function. To remove support for an existing feature, you will have to use the `remove_post_type_support` function.
 
@@ -215,6 +215,26 @@ add_filter( 'post_type_labels_post', function( $labels ) {
 }, 11 );
 ```
 
+## Change admin column settings for existing post type
+
+To change the admin column settings for existing post types like `post` or `page`, you can use the `admin_columns()` function, which accepts an associative array of post types and their admin column settings.
+
+Here’s an example that disables the date, comments and author columns and adds a thumbnail instead:
+
+```php
+Types\Post_Type::admin_columns( [
+    'page' => [
+        'date'         => false,
+        'comments'     => false,
+        'author'       => false,
+        'thumbnail'    => [
+            'width'  => 80,
+            'height' => 80,
+        ],
+    ],
+] );
+```
+
 ## Register taxonomies
 
 ```php
@@ -251,24 +271,74 @@ add_action( 'init', function() {
 
 The `args` parameter is used for the arguments that are passed to `register_taxonomy`. Use the `for_post_types` parameter to assign taxonomies to certain post types. The `name_singular` and `name_plural` parameters are used for the generating the labels in the backend.
 
-## Change admin column settings for existing post type
+## Update existing taxonomies
 
-To change the admin column settings for existing post types like `post` or `page`, you can use the `admin_columns()` function, which accepts an associative of post types and their admin column settings.
+### Change settings for a taxonomy
 
-Here’s an example that disables the date, comments and author columns and adds a thumbnail instead:
+Use the `update()` function to change the settings for an existing taxonomy. Here’s an example for changing the settings for categories to make them not directly accessible in the frontend.
+
+**functions.php**
 
 ```php
-Types\Post_Type::admin_columns( [
-    'page' => [
-        'date'         => false,
-        'comments'     => false,
-        'author'       => false,
-        'thumbnail'    => [
-            'width'  => 80,
-            'height' => 80,
+
+Types\Taxonomy::update( [
+    'post' => [
+        'args' => [
+            'public'            => false,
+            'show_ui'           => true,
+            'show_in_nav_menus' => true,
         ],
     ],
 ] );
+```
+
+The `update()` function accepts an associative array of taxonomies and their arguments. Make sure you use this function before the `init` hook.
+
+### Rename a taxonomy
+
+Sometimes you might want to rename an existing taxonomy to better reflect what it’s used for.
+
+**functions.php**
+
+```php
+Types\Taxonomy::rename( 'category', 'Topic', 'Topics' );
+```
+
+The `rename()` function accepts a taxonomy as the first parameter, the new singular name of the taxonomy as a second parameter and the plural name of the taxonomy as a third parameter. If you omit the third parameter, the second parameter will be used as the plural form instead. Make sure you use this function before the `init` hook.
+
+This is practically a shorthand function for:
+
+```php
+Types\Taxonomy::update( [
+    'category' => [
+        'name_singular' => 'Topic',
+        'name_plural'   => 'Topics,
+    ],
+] );
+```
+
+If you only want to rename one of the labels, e.g. the menu label, you can use the `taxonomy_labels_{$post_type}` filter. Here’s an example for changing the menu name for posts:
+
+```php
+add_filter( 'taxonomy_labels_category', function( $labels ) {
+    $labels->menu_name = 'Topics';
+
+    return $labels;
+}, 11 );
+```
+
+### Unregister taxonomies
+
+If you want to unregister taxonomies for certain post types, it’s best to do it through the `unregister_taxonomy_for_object_type()` function.
+
+```php
+/**
+ * Unregister post categories and post tags.
+ */
+add_action( 'init', function() {
+    unregister_taxonomy_for_object_type( 'category', 'post' );
+    unregister_taxonomy_for_object_type( 'post_tag', 'post' );
+} );
 ```
 
 ## Customize a post slug

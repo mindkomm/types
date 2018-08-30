@@ -51,7 +51,7 @@ class Post_Type_Labels {
 		$this->post_type     = $post_type;
 		$this->name_singular = $name_singular;
 		$this->name_plural   = $name_plural;
-		$this->labels        = $this->get_post_type_labels( $name_singular, $name_plural );
+		$this->labels        = $this->get_labels( $name_singular, $name_plural );
 	}
 
 	/**
@@ -69,7 +69,7 @@ class Post_Type_Labels {
 	}
 
 	/**
-	 * Gets German labels for a post type based on singular and plural name.
+	 * Gets labels for a post type based on singular and plural name.
 	 *
 	 * The following labels are not translated, because they don’t contain the post type name:
 	 * set_feature_image, remove_featured_image
@@ -81,7 +81,7 @@ class Post_Type_Labels {
 	 *
 	 * @return array The translated labels.
 	 */
-	public function get_post_type_labels( $name_singular, $name_plural ) {
+	public function get_labels( $name_singular, $name_plural ) {
 		$labels = [
 			'name'                  => $name_singular,
 			'singular_name'         => $name_plural,
