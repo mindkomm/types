@@ -303,7 +303,7 @@ Use the `update()` function to change the settings for an existing taxonomy. Her
 ```php
 
 Types\Taxonomy::update( [
-    'post' => [
+    'category' => [
         'args' => [
             'public'            => false,
             'show_ui'           => true,
