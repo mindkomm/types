@@ -83,10 +83,7 @@ class Post_Slug {
 			return $data;
 		}
 
-		$post_id     = $postarr['ID'];
-		$post_type   = $postarr['post_type'];
-		$post_slug   = $postarr['post_name'];
-		$post_parent = $postarr['post_parent'];
+		$post_type = $postarr['post_type'];
 
 		// Bailout if no callback could be found.
 		if ( ! in_array( $post_type, array_keys( $this->post_types ), true )
@@ -94,6 +91,10 @@ class Post_Slug {
 		) {
 			return $data;
 		}
+
+		$post_id     = $postarr['ID'];
+		$post_slug   = $postarr['post_name'];
+		$post_parent = $postarr['post_parent'];
 
 		// Filter post slug through user-defined callback.
 		$post_slug = call_user_func( $this->post_types[ $post_type ]['callback'], $post_slug, $postarr, $post_id );
