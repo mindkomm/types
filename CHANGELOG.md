@@ -1,5 +1,14 @@
 # Types
 
+## 2.2.2 - 2018-10-08
+
+- Updated post slug feature to not run when a post is being trashed.
+- Fixed bug when a post slug couldn’t be set when a date couldn’t be parsed. When the date can’t be parsed, the post slug won’t be changed.
+
+## 2.2.1 - 2018-09-20
+
+- Fixed bug when certain values didn’t exist yet for a post.
+
 ## 2.2.0 - 2018-08-29
 
 - Added better handling of labels by updating the messages displayed in the backend and making it possible to properly translate the labels. This will open up the repository for additional languages.
