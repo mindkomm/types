@@ -58,7 +58,10 @@ class Post_Slug {
 
 					$date = \DateTime::createFromFormat( $args['input_format'], $meta_value );
 
-					$post_slug = $post_data['post_title'] . '-' . $date->format( $args['output_format'] );
+					if ( $date ) {
+						$post_slug = $post_data['post_title'] . '-'
+							. $date->format( $args['output_format'] );
+					}
 
 					return $post_slug;
 				},
