@@ -78,7 +78,7 @@ class Post_Slug {
 	 * @return array
 	 */
 	public function customize_slug( $data, $postarr ) {
-		$bailout_states = [ 'auto-draft' ];
+		$bailout_states = [ 'auto-draft', 'trash' ];
 		$post_status    = $postarr['post_status'];
 
 		// Bailout if it’s not the right state.
