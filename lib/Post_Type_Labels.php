@@ -83,8 +83,8 @@ class Post_Type_Labels {
 	 */
 	public function get_labels( $name_singular, $name_plural ) {
 		$labels = [
-			'name'                  => $name_singular,
-			'singular_name'         => $name_plural,
+			'name'                  => $name_plural,
+			'singular_name'         => $name_singular,
 			'add_new'               => __( 'Add New', 'mind/types' ),
 			/* translators: %s: Singular post type name */
 			'add_new_item'          => sprintf( __( 'Add New %s', 'mind/types' ), $name_singular ),
