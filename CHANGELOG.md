@@ -1,5 +1,9 @@
 # Types
 
+## 2.2.3 - 2019-01-17
+
+- Fixed wrong label assignment.
+
 ## 2.2.2 - 2018-10-08
 
 - Updated post slug feature to not run when a post is being trashed.
