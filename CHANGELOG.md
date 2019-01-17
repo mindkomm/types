@@ -2,6 +2,7 @@
 
 ## 2.2.3 - 2019-01-17
 
+- Added new post type labels (<https://make.wordpress.org/core/2018/12/05/new-post-type-labels-in-5-0/>).
 - Fixed wrong label assignment.
 
 ## 2.2.2 - 2018-10-08

@@ -83,49 +83,59 @@ class Post_Type_Labels {
 	 */
 	public function get_labels( $name_singular, $name_plural ) {
 		$labels = [
-			'name'                  => $name_plural,
-			'singular_name'         => $name_singular,
-			'add_new'               => __( 'Add New', 'mind/types' ),
+			'name'                     => $name_plural,
+			'singular_name'            => $name_singular,
+			'add_new'                  => __( 'Add New', 'mind/types' ),
 			/* translators: %s: Singular post type name */
-			'add_new_item'          => sprintf( __( 'Add New %s', 'mind/types' ), $name_singular ),
+			'add_new_item'             => sprintf( __( 'Add New %s', 'mind/types' ), $name_singular ),
 			/* translators: %s: Plural post type name */
-			'all_items'             => sprintf( __( 'All %s', 'mind/types' ), $name_plural ),
+			'all_items'                => sprintf( __( 'All %s', 'mind/types' ), $name_plural ),
 			/* translators: %s: Singular post type name */
-			'archives'              => sprintf( __( '%s Archives', 'mind/types' ), $name_singular ),
+			'archives'                 => sprintf( __( '%s Archives', 'mind/types' ), $name_singular ),
 			/* translators: %s: Singular post type name */
-			'attributes'            => sprintf( __( '%s Attributes', 'mind/types' ), $name_singular ),
+			'attributes'               => sprintf( __( '%s Attributes', 'mind/types' ), $name_singular ),
 			/* translators: %s: Singular post type name */
-			'edit_item'             => sprintf( __( 'Edit %s', 'mind/types' ), $name_singular ),
+			'edit_item'                => sprintf( __( 'Edit %s', 'mind/types' ), $name_singular ),
 			/* translators: %s: Singular post type name */
-			'featured_image'        => sprintf( __( 'Featured Image for %s', 'mind/types' ), $name_singular ),
+			'featured_image'           => sprintf( __( 'Featured Image for %s', 'mind/types' ), $name_singular ),
 			/* translators: %s: Plural post type name */
-			'filter_items_list'     => sprintf( __( 'Filter %s list', 'mind/types' ), $name_plural ),
+			'filter_items_list'        => sprintf( __( 'Filter %s list', 'mind/types' ), $name_plural ),
 			/* translators: %s: Singular post type name */
-			'insert_into_item'      => sprintf( __( 'Insert into %s', 'mind/types' ), $name_singular ),
+			'insert_into_item'         => sprintf( __( 'Insert into %s', 'mind/types' ), $name_singular ),
 			/* translators: %s: Plural post type name */
-			'items_list'            => sprintf( __( '%s list', 'mind/types' ), $name_plural ),
+			'items_list'               => sprintf( __( '%s list', 'mind/types' ), $name_plural ),
 			/* translators: %s: Plural post type name */
-			'items_list_navigation' => sprintf( __( '%s list navigation', 'mind/types' ), $name_plural ),
+			'items_list_navigation'    => sprintf( __( '%s list navigation', 'mind/types' ), $name_plural ),
 			/* translators: %s: Singular post type name */
-			'new_item'              => sprintf( __( 'New %s', 'mind/types' ), $name_singular ),
-			/* translators: %s: Plural post type name */
-			'not_found'             => sprintf( __( 'No %s found.', 'mind/types' ), $name_plural ),
-			/* translators: %s: Plural post type name */
-			'not_found_in_trash'    => sprintf( __( 'No %s found in Trash.', 'mind/types' ), $name_plural ),
+			'item_published'           => sprintf( __( '%s published.', 'mind/types' ), $name_singular ),
 			/* translators: %s: Singular post type name */
-			'parent_item'           => sprintf( __( 'Parent %s', 'mind/types' ), $name_singular ),
+			'item_published_privately' => sprintf( __( '%s published privately.', 'mind/types' ), $name_singular ),
 			/* translators: %s: Singular post type name */
-			'parent_item_colon'     => sprintf( __( 'Parent %s:', 'mind/types' ), $name_singular ),
+			'item_reverted_to_draft'   => sprintf( __( '%s reverted to draft.', 'mind/types' ), $name_singular ),
+			/* translators: %s: Singular post type name */
+			'item_scheduled'           => sprintf( __( '%s scheduled.', 'mind/types' ), $name_singular ),
+			/* translators: %s: Singular post type name */
+			'item_updated'             => sprintf( __( '%s updated.', 'mind/types' ), $name_singular ),
+			/* translators: %s: Singular post type name */
+			'new_item'                 => sprintf( __( 'New %s', 'mind/types' ), $name_singular ),
 			/* translators: %s: Plural post type name */
-			'search_items'          => sprintf( __( 'Search %s', 'mind/types' ), $name_plural ),
-			/* translators: %s: Singular post type name */
-			'uploaded_to_this_item' => sprintf( __( 'Uploaded to this %s', 'mind/types' ), $name_singular ),
-			/* translators: %s: Singular post type name */
-			'view_item'             => sprintf( __( 'View %s', 'mind/types' ), $name_singular ),
+			'not_found'                => sprintf( __( 'No %s found.', 'mind/types' ), $name_plural ),
 			/* translators: %s: Plural post type name */
-			'view_items'            => sprintf( __( 'View %s', 'mind/types' ), $name_plural ),
-			'menu_name'             => $name_plural,
-			'name_admin_bar'        => $name_singular,
+			'not_found_in_trash'       => sprintf( __( 'No %s found in Trash.', 'mind/types' ), $name_plural ),
+			/* translators: %s: Singular post type name */
+			'parent_item'              => sprintf( __( 'Parent %s', 'mind/types' ), $name_singular ),
+			/* translators: %s: Singular post type name */
+			'parent_item_colon'        => sprintf( __( 'Parent %s:', 'mind/types' ), $name_singular ),
+			/* translators: %s: Plural post type name */
+			'search_items'             => sprintf( __( 'Search %s', 'mind/types' ), $name_plural ),
+			/* translators: %s: Singular post type name */
+			'uploaded_to_this_item'    => sprintf( __( 'Uploaded to this %s', 'mind/types' ), $name_singular ),
+			/* translators: %s: Singular post type name */
+			'view_item'                => sprintf( __( 'View %s', 'mind/types' ), $name_singular ),
+			/* translators: %s: Plural post type name */
+			'view_items'               => sprintf( __( 'View %s', 'mind/types' ), $name_plural ),
+			'menu_name'                => $name_plural,
+			'name_admin_bar'           => $name_singular,
 		];
 
 		return $labels;
