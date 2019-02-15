@@ -100,6 +100,7 @@ class Post_Type_Columns {
 				unset( $columns[ $slug ] );
 				continue;
 			}
+			$columns[$slug] = $slug;
 		}
 
 		return $columns;
