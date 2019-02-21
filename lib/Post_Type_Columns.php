@@ -122,7 +122,7 @@ class Post_Type_Columns {
 		$column = $this->columns[ $column_name ];
 
 		if ( 'thumbnail' === $column_name ) {
-			$src = get_post_thumbnail_src( $post_id, 'thumbnail' );
+			$src = get_the_post_thumbnail_url( $post_id, 'thumbnail' );
 
 			if ( empty( $src ) ) {
 				return;
