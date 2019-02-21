@@ -21,7 +21,7 @@ class Post_Type_Columns {
 	private $columns = [];
 
 	/**
-	 * Custom_Post_Type_Columns constructor.
+	 * Post_Type_Columns constructor.
 	 *
 	 * @param string $post_type A post type slug.
 	 * @param array  $columns   An array of columns to be edited.
@@ -95,7 +95,7 @@ class Post_Type_Columns {
 	 */
 	public function columns_sortable( $columns ) {
 		foreach ( $this->columns as $slug => $column ) {
-			// Remove columns when its not sortable
+			// Remove column when it’s not sortable.
 			if ( ! $column['sortable'] ) {
 				unset( $columns[ $slug ] );
 				continue;

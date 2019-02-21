@@ -11,20 +11,21 @@ class Post_Type {
 	 *
 	 * @since 2.0.0
 	 *
-	 * @param array $post_types {
-	 *      An associative array of post types and the arguments used for registering the post type.
+	 * @param array $post_types    {
+	 *     An associative array of post types and the arguments used for registering the post type.
 	 *
-	 *      @type string $name_singular Singular name for post type.
-	 *      @type string $name_plural   Optional. Plural name for post type. If not set, will be the
-	 *                                  same as $name_singular.
-	 *      @type array  $args          Arguments that get passed to post type registration.
-	 *      @type array  $query         Custom query parameters for frontend and backend query.
-	 *      @type array  $admin_columns An array of admin_column definitions.
+	 *     @type string $name_singular Singular name for post type.
+	 *     @type string $name_plural   Optional. Plural name for post type. If not set, will be the
+	 *                                 same as $name_singular.
+	 *     @type array  $args          Arguments that get passed to post type registration.
+	 *     @type array  $query         Custom query parameters for frontend and backend query.
+	 *     @type array  $admin_columns An array of admin_column definitions.
 	 * }
 	 */
 	public static function register( $post_types = [] ) {
 		foreach ( $post_types as $post_type => $args ) {
 			$args = self::parse_args( $args );
+
 			self::register_extensions( $post_type, $args );
 
 			// Defaults for post registration.
@@ -42,19 +43,20 @@ class Post_Type {
 	/**
 	 * Updates settings for a post type.
 	 *
-	 * Here, you use the same settings that you also use for the `register()` funciton.
-	 *
+	 * Here, you use the same settings that you also use for the `register()` function.
 	 * Run this function before the `init` hook.
 	 *
-	 * @see register_post_type()
+	 * @see   register_post_type()
 	 * @since 2.2.0
 	 *
-	 * @param array $post_types An associative array of post types and its arguments that should be updated. See the
-	 *                          `register()` function for all the arguments that you can use.
+	 * @param array $post_types An associative array of post types and its arguments that should be
+	 *                          updated. See the `register()` function for all the arguments that
+	 *                          you can use.
 	 */
 	public static function update( $post_types = [] ) {
 		foreach ( $post_types as $post_type => $args ) {
 			$args = self::parse_args( $args );
+
 			self::register_extensions( $post_type, $args );
 
 			if ( isset( $args['args'] ) ) {
