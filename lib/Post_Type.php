@@ -142,5 +142,13 @@ class Post_Type {
 		if ( isset( $args['admin_columns'] ) ) {
 			( new Post_Type_Columns( $post_type, $args['admin_columns'] ) )->init();
 		}
+
+		if ( isset( $args['page_for_archive'] ) ) {
+			( new Post_Type_Page(
+				$post_type,
+				$args['page_for_archive']['post_id'],
+				$args['page_for_archive']
+			) )->init();
+		}
 	}
 }
