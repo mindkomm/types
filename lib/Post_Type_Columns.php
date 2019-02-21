@@ -34,7 +34,7 @@ class Post_Type_Columns {
 				// Set defaults for thumbnail.
 				if ( 'thumbnail' === $slug ) {
 					$column = wp_parse_args( $column, [
-						'title'  => __( 'Beitragsbild' ),
+						'title'  => __( 'Featured Image', 'mind/types' ),
 						'width'  => 80,
 						'height' => 80,
 					] );

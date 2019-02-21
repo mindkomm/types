@@ -14,6 +14,9 @@
         "autoload.php"
       ]
     },
+    "scripts": {
+      "i18n": "wp i18n make-pot . languages/types.pot --domain=mind/types"
+    },
     "authors": [
         {
             "name": "Lukas Gaechter",

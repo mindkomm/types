@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-01-17T13:51:50+01:00\n"
-"PO-Revision-Date: 2019-01-17 13:56+0100\n"
+"POT-Creation-Date: 2019-02-21T13:47:51+01:00\n"
+"PO-Revision-Date: 2019-02-21 13:48+0100\n"
 "Last-Translator: Lukas Gächter <lukas.gaechter@mind.ch>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -149,6 +149,10 @@ msgstr "%s nicht hinzugefügt."
 #: lib/Taxonomy_Labels.php:152
 msgid "%s not updated."
 msgstr "%s nicht aktualisiert."
+
+#: lib/Post_Type_Columns.php:37
+msgid "Featured Image"
+msgstr "Beitragsbild"
 
 #: lib/Post_Type_Labels.php:88
 msgid "Add New"
