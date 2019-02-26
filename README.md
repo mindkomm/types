@@ -223,7 +223,7 @@ This is practically a shorthand function for:
 Types\Post_Type::update( [
     'post' => [
         'name_singular' => 'Beispiel',
-        'name_plural'   => 'Beispiele,
+        'name_plural'   => 'Beispiele',
     ],
 ] );
 ```
