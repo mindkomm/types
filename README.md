@@ -11,17 +11,20 @@ Custom Post Types and Taxonomy helper classes for WordPress projects.
 
 - [Installation](#installation)
 - [Register post types](#register-post-types)
+    - [query](#query)
+    - [admin_columns](#admin_columns)
+    - [page_for_archive](#page_for_archive)
 - [Update existing post types](#update-existing-post-types)
-	- [Change settings for a post type](#change-settings-for-a-post-type)
-	- [Change post type support](#change-post-type-support)
-	- [Rename a post type](#rename-a-post-type)
-	- [Change admin column settings for existing post type](#change-admin-column-settings-for-existing-post-type)
+    - [Change settings for a post type](#change-settings-for-a-post-type)
+    - [Change post type support](#change-post-type-support)
+    - [Rename a post type](#rename-a-post-type)
+    - [Change admin column settings for existing post type](#change-admin-column-settings-for-existing-post-type)
 - [Register taxonomies](#register-taxonomies)
-	- [Options](#options)
+    - [Options](#options)
 - [Update existing taxonomies](#update-existing-taxonomies)
-	- [Change settings for a taxonomy](#change-settings-for-a-taxonomy)
-	- [Rename a taxonomy](#rename-a-taxonomy)
-	- [Unregister taxonomies](#unregister-taxonomies)
+    - [Change settings for a taxonomy](#change-settings-for-a-taxonomy)
+    - [Rename a taxonomy](#rename-a-taxonomy)
+    - [Unregister taxonomies](#unregister-taxonomies)
 - [Customize a post slug](#customize-a-post-slug)
 
 ## Installation
@@ -163,6 +166,30 @@ You can also set the width and height. The defaults are `80` &times; `80` pixels
 ```
 
 If you need more possibilities for defining admin columns you could use the fantastic [Admin Columns](https://www.admincolumns.com/) plugin.
+
+### page_for_archive
+
+The `page_for_archive` option allows you to set a specific page as the archive page for a custom post type:
+
+```php
+'partner' => [
+    'args' => [
+        'public' => true,
+    ],
+    'page_for_archive' => [
+        'post_id'            => get_option( 'page_for_partner' ),
+        'is_singular_public' => false,
+    ],
+],
+```
+
+In this example, the ID for the page that’s saved in the `page_for_partner` option will act as the archive page for the `partner` post type.
+
+You need to **flush your permalinks** whenever you make changes to this option.
+
+Behind the curtains, Types uses the `has_archive` option when registering a post type and set the slug of the page you passed in the `page_for_archive` option.
+
+The `is_singular_public` option allows you to set, whether singular templates for this post type should be accessible in the frontend. Singular template requests will then be redirected to the archive page. We can’t use the `public` or `publicly_queryable` option for this, because then the archive page wouldn’t work either.
 
 ## Update existing post types
 

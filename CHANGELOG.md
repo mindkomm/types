@@ -1,5 +1,10 @@
 # Types
 
+## 2.3.0 - 2019-03-06
+
+- Added new `Types\Post_Type_Page` class. This class allows you to define a page that should act as the archive for a Custom Post Type [using the `page_for_archive` option](https://github.com/mindkomm/types#page_for_archive).
+- Fixed a bug with an undefined function #2 (Thanks @roylodder). 
+
 ## 2.2.3 - 2019-01-17
 
 - Added new post type labels (<https://make.wordpress.org/core/2018/12/05/new-post-type-labels-in-5-0/>).
