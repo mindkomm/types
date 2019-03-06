@@ -40,7 +40,7 @@ class Post_Type_Page {
 	 * @param int    $post_id   The ID of the post to use as the archive page.
 	 * @param array  $args      An array of arguments for the post type archive page.
 	 */
-	public function __construct( $post_type, $post_id, $args ) {
+	public function __construct( $post_type, $post_id, $args = [] ) {
 		$this->post_type = $post_type;
 		$this->post_id   = (int) $post_id;
 
