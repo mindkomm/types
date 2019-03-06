@@ -109,50 +109,14 @@ class Post_Type_Page {
 				$item->current_item_parent = true;
 				$item->classes[]           = 'current-menu-item-parent';
 
-				$menu_items = $this->add_ancestor_class( $item, $menu_items );
+				$menu_items = \Types\menu_items_ancestors( $item, $menu_items );
 			}
 
 			if ( is_post_type_archive( $this->post_type ) ) {
 				$item->classes[] = 'current-menu-item';
 				$item->current   = true;
 
-				$menu_items = $this->add_ancestor_class( $item, $menu_items );
-			}
-		}
-
-		return $menu_items;
-	}
-
-	/**
-	 * Recursively add ancestor class and properties.
-	 *
-	 * @param object $child       Child menu item.
-	 * @param array  $menu_items  All menu items.
-	 * @param bool   $with_parent Whether to add the direct parent property and class.
-	 *
-	 * @return array Update menu items.
-	 */
-	protected function add_ancestor_class( $child, $menu_items, $with_parent = true ) {
-		// Bailout if menu item has no parent.
-		if ( ! (int) $child->menu_item_parent ) {
-			return $menu_items;
-		}
-
-		foreach ( $menu_items as $item ) {
-			if ( (int) $item->ID === (int) $child->menu_item_parent ) {
-				if ( $with_parent ) {
-					$item->current_item_parent = true;
-					$item->classes[]           = 'current-menu-item-parent';
-				}
-
-				$item->current_item_ancestor = true;
-				$item->classes[]             = 'current-menu-item-ancestor';
-
-				if ( (int) $item->menu_item_parent ) {
-					$menu_items = $this->add_ancestor_class( $item, $menu_items, false );
-				}
-
-				break;
+				$menu_items = \Types\menu_items_ancestors( $item, $menu_items );
 			}
 		}
 
