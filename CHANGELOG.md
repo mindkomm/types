@@ -1,5 +1,9 @@
 # Types
 
+## 2.3.1 - 2019-03-18
+
+- Fixed CSS classes added to parent and ancestor menu items.
+
 ## 2.3.0 - 2019-03-06
 
 - Added new `Types\Post_Type_Page` class. This class allows you to define a page that should act as the archive for a Custom Post Type [using the `page_for_archive` option](https://github.com/mindkomm/types#page_for_archive).
