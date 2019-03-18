@@ -107,7 +107,7 @@ class Post_Type_Page {
 
 			if ( is_singular( $this->post_type ) ) {
 				$item->current_item_parent = true;
-				$item->classes[]           = 'current-menu-item-parent';
+				$item->classes[]           = 'current-menu-parent';
 
 				$menu_items = \Types\menu_items_ancestors( $item, $menu_items );
 			}

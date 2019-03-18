@@ -21,11 +21,11 @@ function menu_items_ancestors( $child, $menu_items, $with_parent = true ) {
 		if ( (int) $item->ID === (int) $child->menu_item_parent ) {
 			if ( $with_parent ) {
 				$item->current_item_parent = true;
-				$item->classes[]           = 'current-menu-item-parent';
+				$item->classes[]           = 'current-menu-parent';
 			}
 
 			$item->current_item_ancestor = true;
-			$item->classes[]             = 'current-menu-item-ancestor';
+			$item->classes[]             = 'current-menu-ancestor';
 
 			if ( (int) $item->menu_item_parent ) {
 				$menu_items = menu_items_ancestors( $item, $menu_items, false );
