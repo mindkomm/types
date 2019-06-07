@@ -3,17 +3,21 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-02-21T13:47:51+01:00\n"
-"PO-Revision-Date: 2019-02-21 13:48+0100\n"
+"POT-Creation-Date: 2019-06-07T11:12:23+02:00\n"
+"PO-Revision-Date: 2019-06-07 11:12+0200\n"
 "Last-Translator: Lukas Gächter <lukas.gaechter@mind.ch>\n"
 "Language-Team: \n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.1\n"
+"X-Generator: Poedit 2.2.3\n"
 "X-Domain: mind/types\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: lib/Post_Type_Page.php:154
+msgid "Edit page for %s"
+msgstr "Seite für %s bearbeiten"
 
 #. translators: %s: Singular taxonomy name
 #. translators: %s: Singular post type name

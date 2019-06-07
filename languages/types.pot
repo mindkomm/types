@@ -7,10 +7,14 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2019-02-21T13:47:51+01:00\n"
+"POT-Creation-Date: 2019-06-07T11:12:23+02:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.1.0\n"
 "X-Domain: mind/types\n"
+
+#: lib/Post_Type_Page.php:154
+msgid "Edit page for %s"
+msgstr ""
 
 #. translators: %s: Singular taxonomy name
 #. translators: %s: Singular post type name

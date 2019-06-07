@@ -59,6 +59,10 @@ class Post_Type_Page {
 		if ( ! $this->args['is_singular_public'] ) {
 			add_action( 'template_redirect', [ $this, 'template_redirect' ] );
 		}
+
+		if ( ! is_admin() ) {
+			add_action( 'admin_bar_menu', [ $this, 'add_page_edit_link' ], 80 );
+		}
 	}
 
 	/**
@@ -121,5 +125,33 @@ class Post_Type_Page {
 		}
 
 		return $menu_items;
+	}
+
+	/**
+	 * Adds a page edit link for the page that acts as the archive to the admin bar.
+	 *
+	 * @see wp_admin_bar_edit_menu()
+	 *
+	 * @since 2.3.2
+	 * @param \WP_Admin_Bar $wp_admin_bar WP_Admin_Bar instance.
+	 */
+	public function add_page_edit_link( $wp_admin_bar ) {
+		$object = get_queried_object();
+
+		if ( empty( $object )
+			|| ! $object instanceof \WP_Post_Type
+			|| $object->name !== $this->post_type
+			|| ! $object->show_in_admin_bar
+			|| ! current_user_can( 'edit_pages', $this->post_id )
+		) {
+			return;
+		}
+
+		$wp_admin_bar->add_menu( [
+			'id'    => 'edit',
+			/* translators: Plural name of the post type */
+			'title' => sprintf( __( 'Edit page for %s', 'mind/types' ), $object->labels->name ),
+			'href'  => get_edit_post_link( $this->post_id ),
+		] );
 	}
 }
