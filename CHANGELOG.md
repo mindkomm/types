@@ -1,5 +1,9 @@
 # Types
 
+## 2.3.2 - 2019-06-07
+
+- Added edit page link to admin bar for archive pages.
+
 ## 2.3.1 - 2019-03-18
 
 - Fixed CSS classes added to parent and ancestor menu items.
