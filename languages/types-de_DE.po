@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-07T11:12:23+02:00\n"
-"PO-Revision-Date: 2019-06-07 11:12+0200\n"
+"POT-Creation-Date: 2019-06-28T09:32:42+02:00\n"
+"PO-Revision-Date: 2019-06-28 09:32+0200\n"
 "Last-Translator: Lukas Gächter <lukas.gaechter@mind.ch>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -15,9 +15,15 @@ msgstr ""
 "X-Domain: mind/types\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: lib/Post_Type_Page.php:154
+#. translators: Plural name of the post type
+#: lib/Post_Type_Page.php:153
 msgid "Edit page for %s"
 msgstr "Seite für %s bearbeiten"
+
+#. translators: Post type label.
+#: lib/Post_Type_Page_Option.php:107 lib/Post_Type_Page_Option.php:159
+msgid "Page for %s"
+msgstr "Seite für %s"
 
 #. translators: %s: Singular taxonomy name
 #. translators: %s: Singular post type name
@@ -236,6 +242,9 @@ msgstr "%s übertragen."
 #: lib/Post_Type_Labels.php:193
 msgid "%s draft updated."
 msgstr "%s-Entwurf aktualisiert."
+
+#~ msgid "%s page"
+#~ msgstr "%s-Seite"
 
 #, fuzzy
 #~| msgid "All %s"

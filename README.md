@@ -3,8 +3,9 @@
 Custom Post Types and Taxonomy helper classes for WordPress projects.
 
 - Register Custom Post Types and Taxonomies through an array notation. Labels will be set accordingly. Currently, English and German languages are supported.
-- Change the query arguments for posts in the front- and backend via a list of arguments, e.g. to set a custom post order.
+- Change the query arguments for posts in the front- and backend via a list of arguments, e.g. to set a custom post order wit the [`query`](#query) option.
 - Change the admin columns for posts in the backend via a list of arguments.
+- Set a specific page as the archive page for a custom post type with the [`page_for_archive`](#page_for_archive) option.
 - Set post slugs dynamically when posts are saved.
 
 ## Table of Contents
@@ -172,24 +173,64 @@ If you need more possibilities for defining admin columns you could use the fant
 The `page_for_archive` option allows you to set a specific page as the archive page for a custom post type:
 
 ```php
-'partner' => [
+'event' => [
     'args' => [
         'public' => true,
     ],
     'page_for_archive' => [
-        'post_id'            => get_option( 'page_for_partner' ),
+        'post_id'            => get_option( 'page_for_event' ),
         'is_singular_public' => false,
     ],
 ],
 ```
 
-In this example, the ID for the page that’s saved in the `page_for_partner` option will act as the archive page for the `partner` post type.
+In this example, the ID for the page that’s saved in the `page_for_event` option will act as the archive page for the `event` post type.
 
 You need to **flush your permalinks** whenever you make changes to this option.
 
-Behind the curtains, Types uses the `has_archive` option when registering a post type and set the slug of the page you passed in the `page_for_archive` option.
+Behind the curtains, Types uses the `has_archive` option when registering a post type and sets the slug of the page you passed in the `page_for_archive` option.
+
+#### is_singular_public
 
 The `is_singular_public` option allows you to set, whether singular templates for this post type should be accessible in the frontend. Singular template requests will then be redirected to the archive page. We can’t use the `public` or `publicly_queryable` option for this, because then the archive page wouldn’t work either.
+
+#### customizer_section
+
+If you want Types to register an option to select the page you want to use as your archive in the Customizer, you can use the `customizer_section` argument:
+
+```php
+'event' => [
+    'page_for_archive' => [
+        'post_id'            => get_option( 'page_for_event' ),
+        'customizer_section' => 'event',
+    ],
+],
+```
+
+With `customizer_section`, you can define in which Customizer section the option should be displayed. This needs to be an existing section. This way, you can decide yourself whether you want to have a separate Customizer section for each custom post type, or whether you want to list all of your custom post type pages in the same section.
+
+#### show_post_state
+
+Types will display a post state in the pages overview for the page that you selected. If you want to disable this functionality, use the `show_post_state` option.
+
+```php
+'event' => [
+    'page_for_archive' => [
+        'post_id'    => get_option( 'page_for_event' ),
+        'show_post_state' => false,
+    ],
+],
+```
+
+#### Use page in template
+
+To make use of that page, you will use it in your archive page where you can now use your page as the main post.
+
+**archive-event.php**
+
+```php
+$post = get_post( get_option( 'page_for_event' ) );
+```
 
 ## Update existing post types
 

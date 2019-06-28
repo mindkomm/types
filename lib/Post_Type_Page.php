@@ -97,7 +97,7 @@ class Post_Type_Page {
 	}
 
 	/**
-	 * Make sure menu items for our pages get the correct classes assigned
+	 * Make sure menu items for our pages get the correct classes assigned.
 	 *
 	 * @param array $menu_items Array of menu items.
 	 *

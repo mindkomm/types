@@ -146,11 +146,29 @@ class Post_Type {
 		}
 
 		if ( isset( $args['page_for_archive'] ) ) {
+			$page_for_archive = wp_parse_args( $args['page_for_archive'], [
+				'post_id'            => null,
+				'is_singular_public' => true,
+				'customizer_section' => '',
+				'show_post_state'    => true,
+			] );
+
 			( new Post_Type_Page(
 				$post_type,
-				$args['page_for_archive']['post_id'],
-				$args['page_for_archive']
+				$page_for_archive['post_id'],
+				$page_for_archive
 			) )->init();
+
+			if ( ! empty( $page_for_archive['customizer_section'] ) ) {
+				( new Post_Type_Page_Option(
+					$post_type,
+					$page_for_archive['customizer_section']
+				) )->init();
+			}
+
+			if ( $page_for_archive['show_post_state'] ) {
+				( new Post_Type_Page_State( $post_type ) )->init();
+			}
 		}
 	}
 }

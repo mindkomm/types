@@ -1,5 +1,12 @@
 # Types
 
+## 2.4.0 - 2019-06-28
+
+- Added `Post_Type_Page_Option` class, which registers an option to select the page to act as the custom post type archive in the Customizer for you.
+- Added `Post_Type_Page_State` class, which adds a post state label to the the pages overview in the admin to recognize pages that act as custom post type archives quicker.
+
+Read more about this functionalities in the [`page_for_archive`](https://github.com/mindkomm/types#page_for_archive) section in the README.
+
 ## 2.3.2 - 2019-06-07
 
 - Added edit page link to admin bar for archive pages.
