@@ -55,6 +55,7 @@ class Post_Type_Page {
 	public function init() {
 		add_filter( 'register_post_type_args', [ $this, 'update_archive_slug' ], 10, 2 );
 		add_filter( 'wp_nav_menu_objects', [ $this, 'filter_wp_nav_menu_objects' ], 1 );
+		add_filter( 'post_type_archive_title', [ $this, 'set_post_type_archive_title' ], 10, 2 );
 
 		if ( ! $this->args['is_singular_public'] ) {
 			add_action( 'template_redirect', [ $this, 'template_redirect' ] );
@@ -125,6 +126,25 @@ class Post_Type_Page {
 		}
 
 		return $menu_items;
+	}
+
+	/**
+	 * Filters the post type archive title to match the title of the post type archive page.
+	 *
+	 * @since 2.4.1
+	 * @see post_type_archive_title()
+	 *
+	 * @param string $title     The archive title.
+	 * @param string $post_type The post type.
+	 *
+	 * @return string The title for the archive.
+	 */
+	public function set_post_type_archive_title( $title, $post_type ) {
+		if ( $this->post_type !== $post_type ) {
+			return $title;
+		}
+
+		return get_the_title( $this->post_id );
 	}
 
 	/**

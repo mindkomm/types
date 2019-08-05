@@ -1,5 +1,9 @@
 # Types
 
+## 2.4.1 - 2019-08-05
+
+- Added filter to update the title for the post type archive when using `post_type_archive_title()`.
+
 ## 2.4.0 - 2019-06-28
 
 - Added `Post_Type_Page_Option` class, which registers an option to select the page to act as the custom post type archive in the Customizer for you.
