@@ -53,6 +53,14 @@ class Post_Type_Page {
 	 * Inits hooks.
 	 */
 	public function init() {
+		/**
+		 * Bail out if no valid post ID is provided or post ID is 0, which happens when no page is
+		 * selected from dropdown-pages.
+		 */
+		if ( ! $this->post_id ) {
+			return;
+		}
+
 		add_filter( 'register_post_type_args', [ $this, 'update_archive_slug' ], 10, 2 );
 		add_filter( 'wp_nav_menu_objects', [ $this, 'filter_wp_nav_menu_objects' ], 1 );
 		add_filter( 'post_type_archive_title', [ $this, 'set_post_type_archive_title' ], 10, 2 );

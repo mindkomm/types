@@ -1,5 +1,9 @@
 # Types
 
+## 2.4.2 - 2019-10-17
+
+- Fixed bug when no page was selected for a custom post type archive in `Post_Type_Page_Option`.
+
 ## 2.4.1 - 2019-08-05
 
 - Added filter to update the title for the post type archive when using `post_type_archive_title()`.
