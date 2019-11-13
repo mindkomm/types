@@ -77,6 +77,9 @@ class Post_Type_Page {
 	/**
 	 * Update the archive slug to be the same as the page that should be used for the archive.
 	 *
+	 * Setting the `has_archive` property will set the proper rewrite rules so that the page URL
+	 * will be used as the archive page.
+	 *
 	 * @param array  $args      Post type registration arguments.
 	 * @param string $post_type Post type name.
 	 *
@@ -87,10 +90,19 @@ class Post_Type_Page {
 			return $args;
 		}
 
-		$args['has_archive'] = trim(
-			wp_make_link_relative( get_permalink( $this->post_id ) ),
-			'/'
-		);
+		$link = get_permalink( $this->post_id );
+
+		/**
+		 * We need to strip away the current base URL from the link, so that we get the relative
+		 * link. It’s not enough to use wp_make_link_relative(), because then WordPress websites in
+		 * subfolders wouldn’t work. This is often the case in multisite environments.
+		 */
+		$link = str_replace( site_url(), '', $link );
+
+		// Trim leading and trailing slashes.
+		$link = trim( $link, '/' );
+
+		$args['has_archive'] = $link;
 
 		return $args;
 	}
