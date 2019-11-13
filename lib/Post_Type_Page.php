@@ -62,6 +62,8 @@ class Post_Type_Page {
 		}
 
 		add_filter( 'register_post_type_args', [ $this, 'update_archive_slug' ], 10, 2 );
+		add_filter( 'post_type_archive_link', [ $this, 'update_archive_link' ], 10, 2 );
+
 		add_filter( 'wp_nav_menu_objects', [ $this, 'filter_wp_nav_menu_objects' ], 1 );
 		add_filter( 'post_type_archive_title', [ $this, 'set_post_type_archive_title' ], 10, 2 );
 
@@ -105,6 +107,30 @@ class Post_Type_Page {
 		$args['has_archive'] = $link;
 
 		return $args;
+	}
+
+	/**
+	 * Filters the post type archive permalink.
+	 *
+	 * This filter is needed for links to be returned properly in multisite environments, when the
+	 * get_post_type_archive_link() function is called after switch_to_blog() was used.
+	 *
+	 * @since 2.4.3
+	 * @see \get_post_type_archive_link()
+	 *
+	 * @param string $link      The post type archive permalink.
+	 * @param string $post_type Post type name.
+	 *
+	 * @return string
+	 */
+	public function update_archive_link( $link, $post_type ) {
+		if ( $post_type !== $this->post_type ) {
+			return $link;
+		}
+
+		$link = get_permalink( $this->post_id );
+
+		return $link;
 	}
 
 	/**
