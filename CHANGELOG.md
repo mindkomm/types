@@ -1,5 +1,12 @@
 # Types
 
+## 2.4.3 - 2019-11-13
+
+This release improves compatibility with multisite environments, especially when working with [MultilingualPress](https://multilingualpress.de/).
+
+- Fixed bug when page archives didn’t work in multilingual multisite environments.
+- Fixed bug when proper archive link couldn’t be selected in multisite environment.
+
 ## 2.4.2 - 2019-10-17
 
 - Fixed bug when no page was selected for a custom post type archive in `Post_Type_Page_Option`.
