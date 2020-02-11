@@ -1,0 +1,243 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-06-28T09:32:42+02:00\n"
+"PO-Revision-Date: 2020-02-11 18:22+0100\n"
+"Language-Team: \n"
+"Language: nl_NL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"X-Domain: mind/types\n"
+"Last-Translator: Roy van Toren\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. translators: Plural name of the post type
+#: lib/Post_Type_Page.php:153
+msgid "Edit page for %s"
+msgstr "Pagina voor %s bewerken"
+
+#. translators: Post type label.
+#: lib/Post_Type_Page_Option.php:107 lib/Post_Type_Page_Option.php:159
+msgid "Page for %s"
+msgstr "Pagina voor %s"
+
+#. translators: %s: Singular taxonomy name
+#. translators: %s: Singular post type name
+#: lib/Taxonomy_Labels.php:87 lib/Post_Type_Labels.php:90
+msgid "Add New %s"
+msgstr "Nieuwe %s toevoegen"
+
+#. translators: %s: Plural taxonomy name
+#: lib/Taxonomy_Labels.php:89
+msgid "Add or remove %s"
+msgstr "%s toevoegen of verwijderen"
+
+#. translators: %s: Plural taxonomy name
+#. translators: %s: Plural post type name
+#: lib/Taxonomy_Labels.php:91 lib/Post_Type_Labels.php:92
+msgid "All %s"
+msgstr "Alle %s"
+
+#. translators: %s: Singular post type name
+#: lib/Taxonomy_Labels.php:93 lib/Post_Type_Labels.php:94
+msgid "%s Archives"
+msgstr "%s archief"
+
+#. translators: %s: Plural taxonomy name
+#: lib/Taxonomy_Labels.php:95
+msgid "&larr; Back to %s"
+msgstr "&larr; Terug naar %s"
+
+#. translators: %s: Plural taxonomy name
+#: lib/Taxonomy_Labels.php:97
+msgid "Choose from the most used %s"
+msgstr "Kies uit de meest gebruikte %s"
+
+#. translators: %s: Singular taxonomy name
+#. translators: %s: Singular post type name
+#: lib/Taxonomy_Labels.php:99 lib/Post_Type_Labels.php:98
+msgid "Edit %s"
+msgstr "%s bewerken"
+
+#. translators: %s: Plural taxonomy name
+#. translators: %s: Plural post type name
+#: lib/Taxonomy_Labels.php:101 lib/Post_Type_Labels.php:106
+msgid "%s list"
+msgstr "%slijst"
+
+#. translators: %s: Plural taxonomy name
+#. translators: %s: Plural post type name
+#: lib/Taxonomy_Labels.php:103 lib/Post_Type_Labels.php:108
+msgid "%s list navigation"
+msgstr "Navigatie door %slijst"
+
+#. translators: %s: Singular taxonomy name
+#: lib/Taxonomy_Labels.php:105
+msgid "New %s Name"
+msgstr "Nieuwe %snaam"
+
+#. translators: %s: Plural taxonomy name
+#: lib/Taxonomy_Labels.php:107
+msgid "No %s"
+msgstr "Geen %s"
+
+#. translators: %s: Plural taxonomy name
+#. translators: %s: Plural post type name
+#: lib/Taxonomy_Labels.php:109 lib/Post_Type_Labels.php:122
+msgid "No %s found."
+msgstr "Geen %s gevonden."
+
+#. translators: %s: Singular taxonomy name
+#. translators: %s: Singular post type name
+#: lib/Taxonomy_Labels.php:111 lib/Post_Type_Labels.php:126
+msgid "Parent %s"
+msgstr "Hoofd %s"
+
+#. translators: %s: Singular taxonomy name
+#. translators: %s: Singular post type name
+#: lib/Taxonomy_Labels.php:113 lib/Post_Type_Labels.php:128
+msgid "Parent %s:"
+msgstr "Hoofd %s:"
+
+#. translators: %s: Plural taxonomy name
+#: lib/Taxonomy_Labels.php:115
+msgid "Popular %s"
+msgstr "Populaire %s"
+
+#. translators: %s: Plural taxonomy name
+#. translators: %s: Plural post type name
+#: lib/Taxonomy_Labels.php:117 lib/Post_Type_Labels.php:130
+msgid "Search %s"
+msgstr "%s zoeken"
+
+#. translators: %s: Plural taxonomy name
+#: lib/Taxonomy_Labels.php:119
+msgid "Separate %s with commas"
+msgstr "%s scheiden door komma’s"
+
+#. translators: %s: Singular taxonomy name
+#: lib/Taxonomy_Labels.php:121
+msgid "Update %s"
+msgstr "%s bijwerken"
+
+#. translators: %s: Singular taxonomy name
+#. translators: %s: Singular post type name
+#. translators: %s: Plural post type name
+#: lib/Taxonomy_Labels.php:123 lib/Post_Type_Labels.php:134
+#: lib/Post_Type_Labels.php:136 lib/Post_Type_Labels.php:173
+msgid "View %s"
+msgstr "%s bekijken"
+
+#. translators: %s: Singular taxonomy name
+#: lib/Taxonomy_Labels.php:144
+msgid "%s added."
+msgstr "%s toegevoegd."
+
+#. translators: %s: Singular taxonomy name
+#. translators: %s: Plural taxonomy name
+#: lib/Taxonomy_Labels.php:146 lib/Taxonomy_Labels.php:154
+msgid "%s deleted."
+msgstr "%s verwijderd."
+
+#. translators: %s: Singular taxonomy name
+#. translators: %s: Singular post type name
+#: lib/Taxonomy_Labels.php:148 lib/Post_Type_Labels.php:118
+#: lib/Post_Type_Labels.php:183 lib/Post_Type_Labels.php:185
+msgid "%s updated."
+msgstr "%s bijgewerkt."
+
+#. translators: %s: Singular taxonomy name
+#: lib/Taxonomy_Labels.php:150
+msgid "%s not added."
+msgstr "%s niet toegevoegd."
+
+#. translators: %s: Singular taxonomy name
+#: lib/Taxonomy_Labels.php:152
+msgid "%s not updated."
+msgstr "%s niet bijgewerkt."
+
+#: lib/Post_Type_Columns.php:37
+msgid "Featured Image"
+msgstr "Uitgelichte afbeelding"
+
+#: lib/Post_Type_Labels.php:88
+msgid "Add New"
+msgstr "Nieuwe toevoegen"
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:96
+msgid "%s Attributes"
+msgstr "%s-attributen"
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:100
+msgid "Featured Image for %s"
+msgstr "Uitgelichte afbeelding voor %s"
+
+#. translators: %s: Plural post type name
+#: lib/Post_Type_Labels.php:102
+msgid "Filter %s list"
+msgstr "%s filteren"
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:104
+msgid "Insert into %s"
+msgstr "In %s invoegen"
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:110 lib/Post_Type_Labels.php:187
+msgid "%s published."
+msgstr "%s gepubliceerd."
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:112
+msgid "%s published privately."
+msgstr "%s privé gepubliceerd."
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:114
+msgid "%s reverted to draft."
+msgstr "%s teruggezet naar concept."
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:116
+msgid "%s scheduled."
+msgstr "%s gepland."
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:120
+msgid "New %s"
+msgstr "Nieuwe %s"
+
+#. translators: %s: Plural post type name
+#: lib/Post_Type_Labels.php:124
+msgid "No %s found in Trash."
+msgstr "Geen %s gevonden in de prullenbak."
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:132
+msgid "Uploaded to this %s"
+msgstr "Geüpload naar deze %s"
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:164
+msgid "Preview %s"
+msgstr "Voorbeeld %s"
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:189
+msgid "%s saved."
+msgstr "%s opgeslagen."
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:191
+msgid "%s submitted."
+msgstr "%s ingediend."
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:193
+msgid "%s draft updated."
+msgstr "%s concept bijgewerkt."
