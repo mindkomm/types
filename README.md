@@ -81,7 +81,7 @@ You can use more options:
 
 ### query
 
-Arguments that are used for quering this post type in the back- and frontend. You can use this to define the sort order. Here’s an example for a post type `event`, where we want to order the posts by the value of a custom field named `date_start`.
+Arguments that are used for querying this post type in the back- and frontend. You can use this to define the sort order. Here’s an example for a post type `event`, where we want to order the posts by the value of a custom field named `date_start`.
 
 ```php
 'query' => [
@@ -129,9 +129,10 @@ Here’s an example for a Custom Post Type `event`.
         },
     ],
     'location'   => [
-        'title'     => 'Ort',
-        'sortable'  => false,
-        'transform' => function( $post_id ) {
+        'title'      => 'Ort',
+        'sortable'   => false,
+        'searchable' => true,
+        'transform'  => function( $post_id ) {
             return get_the_title( $post_id );
         },
     ],
@@ -142,8 +143,9 @@ You can pass `false` if you want to disable an existing column. These are the po
 
 - **title** – *(string)* The title to use for the column. Default empty.
 - **transform** – *(callable)* The function to use on the value that is displayed. The function defined here will get a `$value` parameter that you can transform. E.g., if you have a post ID saved in post meta, you could display the post’s title. Default `null`.
-- **type** – *(string)* The type for the column. You can set this to `acf` if you use Advanced Custom Fields and want to apply its filters to the value. Default `default`.
+- **type** – *(string)* The type for the column. You can set this to `acf` if you use Advanced Custom Fields and want to apply its filters to the value. Default `meta`.
 - **sortable** – *(bool)* Whether the column is sortable. Default `true`.
+- **searchable** – *(bool)* Whether the column is searchable. Will include the meta values when searching the post list. Only applied if using the default type `meta`. Default `false`.
 
 #### thumbnail
 

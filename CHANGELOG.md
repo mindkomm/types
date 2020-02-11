@@ -1,7 +1,8 @@
 # Types
 
-## 2.4.4
+## 2.4.4 - 2020-02-11
 
+- Added Dutch translations.
 - Added `searchable` option as an option for admin columns to make meta columns searchable.
 - Changed default column type for admin columns from `default` to `meta` to be more explicit.
 
