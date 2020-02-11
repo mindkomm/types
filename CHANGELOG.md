@@ -2,6 +2,7 @@
 
 ## 2.4.4
 
+- Added `searchable` option as an option for admin columns to make meta columns searchable.
 - Changed default column type for admin columns from `default` to `meta` to be more explicit.
 
 ## 2.4.3 - 2019-11-13

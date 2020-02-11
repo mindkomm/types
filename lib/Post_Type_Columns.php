@@ -42,10 +42,11 @@ class Post_Type_Columns {
 
 				// Set defaults for each field.
 				$column = wp_parse_args( $column, [
-					'title'     => '',
-					'type'      => 'meta',
-					'transform' => null,
-					'sortable'  => true,
+					'title'      => '',
+					'type'       => 'meta',
+					'transform'  => null,
+					'sortable'   => true,
+					'searchable' => false,
 				] );
 			}
 
@@ -58,11 +59,18 @@ class Post_Type_Columns {
 	 */
 	public function init() {
 		add_filter( 'manage_edit-' . $this->post_type . '_columns', [ $this, 'columns' ] );
-		add_filter( 'manage_edit-' . $this->post_type . '_sortable_columns', [ $this, 'columns_sortable' ] );
+		add_filter( 'manage_edit-' . $this->post_type . '_sortable_columns', [
+			$this,
+			'columns_sortable',
+		] );
 		add_action( 'manage_' . $this->post_type . '_posts_custom_column', [
 			$this,
 			'column_content',
 		], 10, 2 );
+
+		if ( is_admin() ) {
+			add_filter( 'pre_get_posts', [ $this, 'search_custom_fields' ] );
+		}
 	}
 
 	/**
@@ -156,5 +164,41 @@ class Post_Type_Columns {
 		}
 
 		echo $value;
+	}
+
+	/**
+	 * Includeds searchable custom fields in the search.
+	 *
+	 * @param \WP_Query $query WordPress query object.
+	 */
+	public function search_custom_fields( \WP_Query $query ) {
+		global $typenow;
+		$searchterm = $query->query_vars['s'];
+
+		if ( ! $query->is_main_query() || $typenow !== $this->post_type || empty( $searchterm ) ) {
+			return;
+		}
+
+		$meta_columns = array_filter( $this->columns, function( $column ) {
+			return 'meta' === $column['type'] && $column['searchable'];
+		} );
+
+		$meta_query = [ 'relation' => 'OR' ];
+
+		foreach ( $meta_columns as $key => $column ) {
+			$meta_query[] = [
+				'key'     => $key,
+				'value'   => $searchterm,
+				'compare' => 'LIKE',
+			];
+		}
+
+		/**
+		 * The search parameter needs to be removed from the query, because it will prevent
+		 * the proper posts from being found.
+		 */
+		$query->set( 's', '' );
+
+		$query->set( 'meta_query', $meta_query );
 	}
 }
