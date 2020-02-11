@@ -1,5 +1,9 @@
 # Types
 
+## 2.4.4
+
+- Changed default column type for admin columns from `default` to `meta` to be more explicit.
+
 ## 2.4.3 - 2019-11-13
 
 This release improves compatibility with multisite environments, especially when working with [MultilingualPress](https://multilingualpress.de/).

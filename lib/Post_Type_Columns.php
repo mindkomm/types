@@ -43,7 +43,7 @@ class Post_Type_Columns {
 				// Set defaults for each field.
 				$column = wp_parse_args( $column, [
 					'title'     => '',
-					'type'      => 'default',
+					'type'      => 'meta',
 					'transform' => null,
 					'sortable'  => true,
 				] );
@@ -147,7 +147,7 @@ class Post_Type_Columns {
 
 		if ( 'acf' === $column['type'] ) {
 			$value = get_field( $column_name, $post_id );
-		} else {
+		} elseif ( 'meta' === $column['type'] ) {
 			$value = get_post_meta( $post_id, $column_name, true );
 		}
 
