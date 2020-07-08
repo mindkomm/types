@@ -152,9 +152,7 @@ class Post_Type_Columns {
 	 */
 	public function column_content( $column_name, $post_id ) {
 		// Bail out.
-		if ( empty( $this->columns )
-			|| ! in_array( $column_name, array_keys( $this->columns ), true )
-		) {
+		if ( ! array_key_exists( $column_name, $this->columns ) ) {
 			return;
 		}
 
@@ -184,6 +182,7 @@ class Post_Type_Columns {
 			return;
 		}
 
+		$value = '';
 		if ( 'acf' === $column['type'] ) {
 			$value = get_field( $column_name, $post_id );
 		} elseif ( 'meta' === $column['type'] ) {
