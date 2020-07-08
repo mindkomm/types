@@ -128,9 +128,7 @@ class Post_Type_Page {
 			return $link;
 		}
 
-		$link = get_permalink( $this->post_id );
-
-		return $link;
+		return get_permalink( $this->post_id );
 	}
 
 	/**
