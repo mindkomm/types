@@ -1,5 +1,9 @@
 # Types
 
+## 2.5.1 - 2020-07-08
+
+- Fixed a PHP notice.
+
 ## 2.5.0 - 2020-07-08
 
 - Fixed `sortable` parameter for the `admin_columns` option. Sorting didn’t work properly before. It should work now.
