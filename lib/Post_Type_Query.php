@@ -35,7 +35,7 @@ class Post_Type_Query {
 	 * Inits hooks.
 	 */
 	public function init() {
-		add_action( 'pre_get_posts', [ $this, 'pre_get_posts' ] );
+		add_action( 'pre_get_posts', [ $this, 'pre_get_posts' ], 9 );
 	}
 
 	/**
@@ -99,6 +99,19 @@ class Post_Type_Query {
 
 		if ( empty( $query_args ) ) {
 			return;
+		}
+
+		/**
+		 * When certain args are explicitly set through a $_GET parameter, then ignore them by
+		 * removing them from the query args. Otherwise, sorting the list table in the admin won’t
+		 * work.
+		 */
+		if ( is_admin() ) {
+			foreach( [ 'order', 'orderby' ] as $arg ) {
+				if ( ! empty( $_GET[ $arg ] ) && isset( $query_args[ $arg ] ) ) {
+					unset( $query_args[$arg ] );
+				}
+			}
 		}
 
 		// Set query args.
