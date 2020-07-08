@@ -34,9 +34,10 @@ class Post_Type_Columns {
 				// Set defaults for thumbnail.
 				if ( 'thumbnail' === $slug ) {
 					$column = wp_parse_args( $column, [
-						'title'  => __( 'Featured Image', 'mind/types' ),
-						'width'  => 80,
-						'height' => 80,
+						'title'    => __( 'Featured Image', 'mind/types' ),
+						'width'    => 80,
+						'height'   => 80,
+						'sortable' => false,
 					] );
 				}
 
@@ -45,7 +46,8 @@ class Post_Type_Columns {
 					'title'      => '',
 					'type'       => 'meta',
 					'transform'  => null,
-					'sortable'   => true,
+					'sortable'   => false,
+					'orderby'    => 'meta_value',
 					'searchable' => false,
 				] );
 			}
@@ -69,7 +71,8 @@ class Post_Type_Columns {
 		], 10, 2 );
 
 		if ( is_admin() ) {
-			add_filter( 'pre_get_posts', [ $this, 'search_custom_fields' ] );
+			add_action( 'pre_get_posts', [ $this, 'search_custom_fields' ] );
+			add_action( 'pre_get_posts', [ $this, 'sort_by_meta' ] );
 		}
 	}
 
@@ -107,10 +110,37 @@ class Post_Type_Columns {
 			if ( ! $column['sortable'] ) {
 				unset( $columns[ $slug ] );
 				continue;
+			} elseif ( ! isset( $columns[ $slug ] ) ) {
+				if ( 'meta' === $column['type'] ) {
+					$columns[ $slug ] = $slug;
+				}
 			}
 		}
 
 		return $columns;
+	}
+
+	/**
+	 * Includes searchable custom fields in the search.
+	 *
+	 * @param \WP_Query $query WordPress query object.
+	 */
+	public function sort_by_meta( \WP_Query $query ) {
+		global $typenow;
+		$orderby = $query->get( 'orderby' );
+
+		if ( ! $query->is_main_query()
+			|| $typenow !== $this->post_type
+			|| empty( $orderby )
+			|| 'meta' !== $this->columns[ $orderby ]['type']
+		) {
+			return;
+		}
+
+		$new_orderby = $this->columns[ $orderby ]['orderby'];
+
+		$query->set( 'orderby', $new_orderby );
+		$query->set( 'meta_key', $orderby );
 	}
 
 	/**
@@ -167,7 +197,7 @@ class Post_Type_Columns {
 	}
 
 	/**
-	 * Includeds searchable custom fields in the search.
+	 * Includes searchable custom fields in the search.
 	 *
 	 * @param \WP_Query $query WordPress query object.
 	 */
