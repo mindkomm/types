@@ -1,5 +1,12 @@
 # Types
 
+## 2.5.0 - 2020-07-08
+
+- Fixed `sortable` parameter for the `admin_columns` option. Sorting didn’t work properly before. It should work now.
+- Changed default for `sortable` parameter for the `admin_columns` option from `true` to `false`.
+- Added new `orderby` parameter for the `admin_columns` option that will be used in combination with the `sortable` parameter.
+- Fixed a bug when the `query` option was interfering with sorting queries in post list tables.
+
 ## 2.4.4 - 2020-02-11
 
 - Added Dutch translations.

@@ -129,12 +129,17 @@ Here’s an example for a Custom Post Type `event`.
         },
     ],
     'location'   => [
-        'title'      => 'Ort',
-        'sortable'   => false,
+        'title'      => 'Location',
+        'sortable'   => true,
         'searchable' => true,
         'transform'  => function( $post_id ) {
             return get_the_title( $post_id );
         },
+    ],
+    'width' => [
+        'title'    => 'Width',
+        'sortable' => true,
+        'orderby'  => 'meta_value_num',
     ],
 ],
 ```
@@ -144,7 +149,8 @@ You can pass `false` if you want to disable an existing column. These are the po
 - **title** – *(string)* The title to use for the column. Default empty.
 - **transform** – *(callable)* The function to use on the value that is displayed. The function defined here will get a `$value` parameter that you can transform. E.g., if you have a post ID saved in post meta, you could display the post’s title. Default `null`.
 - **type** – *(string)* The type for the column. You can set this to `acf` if you use Advanced Custom Fields and want to apply its filters to the value. Default `meta`.
-- **sortable** – *(bool)* Whether the column is sortable. Default `true`.
+- **sortable** – *(bool)* Whether the column is sortable. Default `false`.
+- **orderby** – *(string)* What to order by when the `sortable` argument is used. You don’t need to provide a `meta_key` parameter, because it is automatically set. Default `meta_value`.
 - **searchable** – *(bool)* Whether the column is searchable. Will include the meta values when searching the post list. Only applied if using the default type `meta`. Default `false`.
 
 #### thumbnail
