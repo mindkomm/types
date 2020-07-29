@@ -3,6 +3,7 @@
 ## 2.5.2 - 2020-07-29
 
 - Fixed a bug when wrong translation loaded in admin.
+- Fixed a bug when searching for post titles didn’t work in combination with meta value searches.
 - Fixed some code style issues (thanks, @szepeviktor).
 
 ## 2.5.1 - 2020-07-08

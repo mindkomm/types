@@ -71,7 +71,7 @@ class Post_Type_Columns {
 		], 10, 2 );
 
 		if ( is_admin() ) {
-			add_action( 'pre_get_posts', [ $this, 'search_custom_fields' ] );
+			add_action( 'pre_get_posts', [ $this, 'search_meta_or_title' ] );
 			add_action( 'pre_get_posts', [ $this, 'sort_by_meta' ] );
 		}
 	}
@@ -201,17 +201,26 @@ class Post_Type_Columns {
 	 *
 	 * @param \WP_Query $query WordPress query object.
 	 */
-	public function search_custom_fields( \WP_Query $query ) {
+	public function search_meta_or_title( \WP_Query $query ) {
 		global $typenow;
 		$searchterm = $query->query_vars['s'];
 
-		if ( ! $query->is_main_query() || $typenow !== $this->post_type || empty( $searchterm ) ) {
+		if (
+			! $query->is_main_query()
+			|| $typenow !== $this->post_type
+			|| empty( $searchterm )
+		) {
 			return;
 		}
 
 		$meta_columns = array_filter( $this->columns, function( $column ) {
 			return 'meta' === $column['type'] && $column['searchable'];
 		} );
+
+		// Bail out and use default search if no searchable meta columns are defined.
+		if ( empty( $meta_columns ) ) {
+			return;
+		}
 
 		$meta_query = [ 'relation' => 'OR' ];
 
@@ -223,12 +232,47 @@ class Post_Type_Columns {
 			];
 		}
 
+		$query->set( 'meta_query', $meta_query );
+
 		/**
-		 * The search parameter needs to be removed from the query, because it will prevent
-		 * the proper posts from being found.
+		 * Remove search parameter.
+		 *
+		 * The search parameter needs to be removed from the query, otherwise posts can’t be found.
+		 * A disadvantage of this is that all the logic in \WP_Query::parse_search() is lost.
+		 *
+		 * @see \WP_Query::parse_search()
 		 */
 		$query->set( 's', '' );
 
-		$query->set( 'meta_query', $meta_query );
+		// Fixes the "Search results for …" label in the post list table.
+		add_filter( 'get_search_query', function( $query ) use ( $searchterm ) {
+			return $searchterm;
+		} );
+
+		/**
+		 * Update meta query to include search for title.
+		 *
+		 * This logic is taken from a StackOverflow answer:
+		 * @link https://wordpress.stackexchange.com/a/178492/22506
+		 */
+		add_filter( 'get_meta_sql', function( $sql ) use ( $searchterm ) {
+			global $wpdb;
+
+			// Run only once.
+			static $nr = 0;
+
+			if ( 0 != $nr ++ ) {
+				return $sql;
+			}
+
+			// Modify the WHERE part.
+			$sql['where'] = sprintf(
+				" AND ( %s OR %s ) ",
+				$wpdb->prepare( "{$wpdb->posts}.post_title like '%%%s%%'", $searchterm ),
+				mb_substr( $sql['where'], 5, mb_strlen( $sql['where'] ) )
+			);
+
+			return $sql;
+		} );
 	}
 }
