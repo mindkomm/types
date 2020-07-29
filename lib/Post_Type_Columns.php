@@ -269,7 +269,7 @@ class Post_Type_Columns {
 			$sql['where'] = sprintf(
 				" AND ( %s OR %s ) ",
 				$wpdb->prepare( "{$wpdb->posts}.post_title like '%%%s%%'", $searchterm ),
-				mb_substr( $sql['where'], 5, mb_strlen( $sql['where'] ) )
+				mb_substr( $sql['where'], 5 )
 			);
 
 			return $sql;
