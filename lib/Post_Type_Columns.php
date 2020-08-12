@@ -43,12 +43,13 @@ class Post_Type_Columns {
 
 				// Set defaults for each field.
 				$column = wp_parse_args( $column, [
-					'title'      => '',
-					'type'       => 'meta',
-					'transform'  => null,
-					'sortable'   => false,
-					'orderby'    => 'meta_value',
-					'searchable' => false,
+					'title'        => '',
+					'type'         => 'meta',
+					'transform'    => null,
+					'sortable'     => false,
+					'orderby'      => 'meta_value',
+					'column_order' => 10,
+					'searchable'   => false,
 				] );
 			}
 
@@ -84,17 +85,46 @@ class Post_Type_Columns {
 	 * @return array Filtered array.
 	 */
 	public function columns( $columns ) {
-		foreach ( $this->columns as $slug => $column ) {
-			// Columns can be removed when they are set to 'false'
-			if ( false === $column ) {
-				unset( $columns[ $slug ] );
-				continue;
-			}
+		$sorted = [];
+		$return = [];
 
-			$columns[ $slug ] = $column['title'];
+		// Move existing columns into sort array.
+		foreach ( $columns as $key => $column ) {
+			$sorted[ $key ] = [
+				'title'        => $column,
+				// The checkbox should always be first, hence the order key '-1'.
+				'column_order' => 'cb' === $key ? - 1 : 10,
+			];
 		}
 
-		return $columns;
+		// Merge in user-defined columns and settings for existing columns.
+		foreach ( $this->columns as $key => $column ) {
+			if ( isset( $sorted[ $key ] ) ) {
+				// Columns can be removed when they are set to 'false'
+				if ( false === $column ) {
+					unset( $sorted[ $key ] );
+					continue;
+				}
+
+				if ( ! empty( $column['title'] ) ) {
+					$sorted[ $key ]['title'] = $column['title'];
+				}
+
+				if ( 10 !== $column['column_order'] ) {
+					$sorted[ $key ]['column_order'] = $column['column_order'];
+				}
+			} else {
+				$sorted[ $key ] = $column;
+			}
+		}
+
+		$sorted = wp_list_sort( $sorted, 'column_order', 'ASC', true );
+
+		foreach ( $sorted as $slug => $column ) {
+			$return[ $slug ] = $column['title'];
+		}
+
+		return $return;
 	}
 
 	/**
@@ -298,6 +328,7 @@ class Post_Type_Columns {
 		 * Update meta query to include search for title.
 		 *
 		 * This logic is taken from a StackOverflow answer:
+		 *
 		 * @link https://wordpress.stackexchange.com/a/178492/22506
 		 */
 		add_filter( 'get_meta_sql', function( $sql ) use ( $searchterm ) {
