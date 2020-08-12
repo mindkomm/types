@@ -1,5 +1,11 @@
 # Types
 
+## 2.5.3 - 2020-08-12
+
+- Added a new `column_order` argument for the `admin_columns` option.
+- Added a new `image` type for the `admin_columns` option.
+- Added a new `custom` type for the `admin_columns` option.
+
 ## 2.5.2 - 2020-07-29
 
 - Fixed a bug when wrong translation loaded in admin.

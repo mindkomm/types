@@ -10,23 +10,37 @@ Custom Post Types and Taxonomy helper classes for WordPress projects.
 
 ## Table of Contents
 
+<!-- TOC -->
+
+- [Table of Contents](#table-of-contents)
 - [Installation](#installation)
 - [Register post types](#register-post-types)
     - [query](#query)
     - [admin_columns](#admin_columns)
+        - [Type](#type)
+        - [The `meta` and `acf` types](#the-meta-and-acf-types)
+        - [The `thumbnail` type](#the-thumbnail-type)
+        - [The `image` type](#the-image-type)
+        - [Existing columns and column order](#existing-columns-and-column-order)
     - [page_for_archive](#page_for_archive)
+        - [is_singular_public](#is_singular_public)
+        - [customizer_section](#customizer_section)
+        - [show_post_state](#show_post_state)
+        - [Use page in template](#use-page-in-template)
 - [Update existing post types](#update-existing-post-types)
     - [Change settings for a post type](#change-settings-for-a-post-type)
     - [Change post type support](#change-post-type-support)
     - [Rename a post type](#rename-a-post-type)
-    - [Change admin column settings for existing post type](#change-admin-column-settings-for-existing-post-type)
+- [Change admin column settings for existing post type](#change-admin-column-settings-for-existing-post-type)
 - [Register taxonomies](#register-taxonomies)
-    - [Options](#options)
 - [Update existing taxonomies](#update-existing-taxonomies)
     - [Change settings for a taxonomy](#change-settings-for-a-taxonomy)
     - [Rename a taxonomy](#rename-a-taxonomy)
     - [Unregister taxonomies](#unregister-taxonomies)
 - [Customize a post slug](#customize-a-post-slug)
+- [Support](#support)
+
+<!-- /TOC -->
 
 ## Installation
 
@@ -112,7 +126,7 @@ If you only use one key and omit the other, then the query will only be applied 
 
 ### admin_columns
 
-Arguments that are used to add and remove admin columns in the backend. Pass an associative array of column names with arguments. The column name is the name of the meta field you want to display.
+Arguments that are used to add and remove admin columns in the backend. Pass an associative array of column names with arguments.
 
 Here’s an example for a Custom Post Type `event`.
 
@@ -144,16 +158,35 @@ Here’s an example for a Custom Post Type `event`.
 ],
 ```
 
-You can pass `false` if you want to disable an existing column. These are the possible arguments:
+These are the possible arguments:
 
 - **title** – *(string)* The title to use for the column. Default empty.
 - **transform** – *(callable)* The function to use on the value that is displayed. The function defined here will get a `$value` parameter that you can transform. E.g., if you have a post ID saved in post meta, you could display the post’s title. Default `null`.
-- **type** – *(string)* The type for the column. You can set this to `acf` if you use Advanced Custom Fields and want to apply its filters to the value. Default `meta`.
+- **type** – *(string)* The type for the column. One of `meta`, `acf`, `thumbnail`, `image` or `custom`. Default `meta`.
 - **sortable** – *(bool)* Whether the column is sortable. Default `false`.
 - **orderby** – *(string)* What to order by when the `sortable` argument is used. You don’t need to provide a `meta_key` parameter, because it is automatically set. Default `meta_value`.
 - **searchable** – *(bool)* Whether the column is searchable. Will include the meta values when searching the post list. Only applied if using the default type `meta`. Default `false`.
+- **column_order** – *(int)* An order number to sort by. You can use this to change the order of your columns. Default `10`.
 
-#### thumbnail
+If you need more possibilities for defining admin columns you could use the fantastic [Admin Columns](https://www.admincolumns.com/) plugin.
+
+#### Type
+
+The `type` argument defines how your column is interpreted. The following types exist:
+
+- `meta`
+- `acf`
+- `thumbnail`
+- `image`
+- `custom`
+
+#### The `meta` and `acf` types
+
+With the `meta` type, the column name is the name of the meta field you want to display.
+
+You can also use `acf` as a type you use Advanced Custom Fields and want to apply its filters to the value.
+
+#### The `thumbnail` type
 
 Use this key to display the featured image thumbnail for a post.
 
@@ -174,7 +207,101 @@ You can also set the width and height. The defaults are `80` &times; `80` pixels
 ],
 ```
 
-If you need more possibilities for defining admin columns you could use the fantastic [Admin Columns](https://www.admincolumns.com/) plugin.
+#### The `image` type
+
+The `type` allows you to display an image other than the featured image. This type will also use the key of the column to get an **attachment ID** from the post’s meta values.
+
+```php
+'admin_columns' => [
+    'profile_image' => [
+        'title'  => 'Profile image',
+        'type'   => 'image',
+    ],
+],
+```
+
+By default, it will display the `thumbnail` size. If you want to request a different size, use the `image_size` parameter.
+
+```php
+'admin_columns' => [
+    'profile_image' => [
+        'title'      => 'Profile image',
+        'type'       => 'image',
+        'image_size' => 'medium',
+    ],
+],
+```
+
+And if you want to restrict the width and the height of the image, you can provide pixel values for `width` and `height`.
+
+```php
+'admin_columns' => [
+    'profile_image' => [
+        'title'  => 'Profile image',
+        'type'   => 'image',
+        'width'  => 100,
+        'height' => 100,
+    ],
+],
+```
+
+#### The `custom` type
+
+If you want to do something custom, you can use the `custom` type. If you use the `custom` type, you need to provide a `value`, which is a callback function that receives the post’s ID as a single parameter.
+
+In this example, we call a function that extracts an attribute value from a certain block of the post.
+
+```php
+'email' => [
+    'title' => __( 'Email', 'theme-module-teammember' ),
+    'type'  => 'custom',
+    'value' => function( $post_id ) {
+        return $this->get_block_attribute( $post_id, 'email' );
+    },
+],
+```
+
+#### Existing columns and column order
+
+You can also update or hide existing columns. Existing columns can be updated with the `title` and the `column_order` argument.
+
+If you want to the change the title of an existing column, use the `title` attribute.
+
+```php
+'admin_columns' => [
+    'title' => [
+        'title' => 'Event title',
+    ],
+],
+```
+
+If you want to move the column, you can use the `column_order` argument. In this example, we would move the `date` column to the end.
+
+```php
+'admin_columns' => [
+    'date' => [
+        'column_order' => 100,
+    ],
+],
+```
+
+The default order is `10`. So if you wanted to move a column like the thumbnail to the start, you could use `5`.
+
+```php
+'admin_columns' => [
+    'thumbnail' => [
+        'column_order' => 5,
+    ],
+],
+```
+
+To hide an existing column, you can use `false`.
+
+```php
+'admin_columns' => [
+    'date' => false,
+],
+```
 
 ### page_for_archive
 
