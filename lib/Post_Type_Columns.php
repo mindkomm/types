@@ -202,9 +202,13 @@ class Post_Type_Columns {
 					return;
 				}
 			}
+		} elseif ( 'custom' === $column['type'] && is_callable( $column['value'] ) ) {
+			$value = call_user_func( $column['value'], $post_id );
 		}
 
-		if ( is_callable( $column['transform'] ) ) {
+		if ( in_array( $column['type'], [ 'meta', 'acf' ], true )
+			&& is_callable( $column['transform'] )
+		) {
 			$value = call_user_func( $column['transform'], $value, $post_id );
 		}
 
