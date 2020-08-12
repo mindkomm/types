@@ -30,13 +30,6 @@ class Post_Type_Labels {
 	private $name_plural = '';
 
 	/**
-	 * Post type labels.
-	 *
-	 * @var array|null
-	 */
-	private $labels = null;
-
-	/**
 	 * Post_Type_Labels constructor.
 	 *
 	 * @param string $post_type     The post type slug.
@@ -51,7 +44,6 @@ class Post_Type_Labels {
 		$this->post_type     = $post_type;
 		$this->name_singular = $name_singular;
 		$this->name_plural   = $name_plural;
-		$this->labels        = $this->get_labels( $name_singular, $name_plural );
 	}
 
 	/**
@@ -59,7 +51,7 @@ class Post_Type_Labels {
 	 */
 	public function init() {
 		add_filter( "post_type_labels_{$this->post_type}", function() {
-			return $this->labels;
+			return $this->get_labels();
 		} );
 
 		if ( is_admin() ) {
@@ -76,69 +68,136 @@ class Post_Type_Labels {
 	 *
 	 * @link https://developer.wordpress.org/reference/functions/get_post_type_labels/
 	 *
-	 * @param string $name_singular Singular name for post type.
-	 * @param string $name_plural   Plural name for post type.
-	 *
 	 * @return array The translated labels.
 	 */
-	public function get_labels( $name_singular, $name_plural ) {
-		$labels = [
-			'name'                     => $name_plural,
-			'singular_name'            => $name_singular,
+	public function get_labels() {
+		return [
+			'name'                     => $this->name_plural,
+			'singular_name'            => $this->name_singular,
 			'add_new'                  => __( 'Add New', 'mind/types' ),
-			/* translators: %s: Singular post type name */
-			'add_new_item'             => sprintf( __( 'Add New %s', 'mind/types' ), $name_singular ),
-			/* translators: %s: Plural post type name */
-			'all_items'                => sprintf( __( 'All %s', 'mind/types' ), $name_plural ),
-			/* translators: %s: Singular post type name */
-			'archives'                 => sprintf( __( '%s Archives', 'mind/types' ), $name_singular ),
-			/* translators: %s: Singular post type name */
-			'attributes'               => sprintf( __( '%s Attributes', 'mind/types' ), $name_singular ),
-			/* translators: %s: Singular post type name */
-			'edit_item'                => sprintf( __( 'Edit %s', 'mind/types' ), $name_singular ),
-			/* translators: %s: Singular post type name */
-			'featured_image'           => sprintf( __( 'Featured Image for %s', 'mind/types' ), $name_singular ),
-			/* translators: %s: Plural post type name */
-			'filter_items_list'        => sprintf( __( 'Filter %s list', 'mind/types' ), $name_plural ),
-			/* translators: %s: Singular post type name */
-			'insert_into_item'         => sprintf( __( 'Insert into %s', 'mind/types' ), $name_singular ),
-			/* translators: %s: Plural post type name */
-			'items_list'               => sprintf( __( '%s list', 'mind/types' ), $name_plural ),
-			/* translators: %s: Plural post type name */
-			'items_list_navigation'    => sprintf( __( '%s list navigation', 'mind/types' ), $name_plural ),
-			/* translators: %s: Singular post type name */
-			'item_published'           => sprintf( __( '%s published.', 'mind/types' ), $name_singular ),
-			/* translators: %s: Singular post type name */
-			'item_published_privately' => sprintf( __( '%s published privately.', 'mind/types' ), $name_singular ),
-			/* translators: %s: Singular post type name */
-			'item_reverted_to_draft'   => sprintf( __( '%s reverted to draft.', 'mind/types' ), $name_singular ),
-			/* translators: %s: Singular post type name */
-			'item_scheduled'           => sprintf( __( '%s scheduled.', 'mind/types' ), $name_singular ),
-			/* translators: %s: Singular post type name */
-			'item_updated'             => sprintf( __( '%s updated.', 'mind/types' ), $name_singular ),
-			/* translators: %s: Singular post type name */
-			'new_item'                 => sprintf( __( 'New %s', 'mind/types' ), $name_singular ),
-			/* translators: %s: Plural post type name */
-			'not_found'                => sprintf( __( 'No %s found.', 'mind/types' ), $name_plural ),
-			/* translators: %s: Plural post type name */
-			'not_found_in_trash'       => sprintf( __( 'No %s found in Trash.', 'mind/types' ), $name_plural ),
-			/* translators: %s: Singular post type name */
-			'parent_item'              => sprintf( __( 'Parent %s', 'mind/types' ), $name_singular ),
-			/* translators: %s: Singular post type name */
-			'parent_item_colon'        => sprintf( __( 'Parent %s:', 'mind/types' ), $name_singular ),
-			/* translators: %s: Plural post type name */
-			'search_items'             => sprintf( __( 'Search %s', 'mind/types' ), $name_plural ),
-			/* translators: %s: Singular post type name */
-			'uploaded_to_this_item'    => sprintf( __( 'Uploaded to this %s', 'mind/types' ), $name_singular ),
-			/* translators: %s: Singular post type name */
-			'view_item'                => sprintf( __( 'View %s', 'mind/types' ), $name_singular ),
-			/* translators: %s: Plural post type name */
-			'view_items'               => sprintf( __( 'View %s', 'mind/types' ), $name_plural ),
-			'menu_name'                => $name_plural,
-			'name_admin_bar'           => $name_singular,
+			'add_new_item'             => sprintf(
+				/* translators: %s: Singular post type name */
+				__( 'Add New %s', 'mind/types' ),
+				$this->name_singular
+			),
+			'all_items'                => sprintf(
+				/* translators: %s: Plural post type name */
+				__( 'All %s', 'mind/types' ),
+				$this->name_plural
+			),
+			'archives'                 => sprintf(
+				/* translators: %s: Singular post type name */
+				__( '%s Archives', 'mind/types' ),
+				$this->name_singular
+			),
+			'attributes'               => sprintf(
+				/* translators: %s: Singular post type name */
+				__( '%s Attributes', 'mind/types' ),
+				$this->name_singular
+			),
+			'edit_item'                => sprintf(
+				/* translators: %s: Singular post type name */
+				__( 'Edit %s', 'mind/types' ),
+				$this->name_singular
+			),
+			'featured_image'           => sprintf(
+				/* translators: %s: Singular post type name */
+				__( 'Featured Image for %s', 'mind/types' ),
+				$this->name_singular
+			),
+			'filter_items_list'        => sprintf(
+				/* translators: %s: Plural post type name */
+				__( 'Filter %s list', 'mind/types' ),
+				$this->name_plural
+			),
+			'insert_into_item'         => sprintf(
+				/* translators: %s: Singular post type name */
+				__( 'Insert into %s', 'mind/types' ),
+				$this->name_singular
+			),
+			'items_list'               => sprintf(
+				/* translators: %s: Plural post type name */
+				__( '%s list', 'mind/types' ),
+				$this->name_plural
+			),
+			'items_list_navigation'    => sprintf(
+				/* translators: %s: Plural post type name */
+				__( '%s list navigation', 'mind/types' ),
+				$this->name_plural
+			),
+			'item_published'           => sprintf(
+				/* translators: %s: Singular post type name */
+				__( '%s published.', 'mind/types' ),
+				$this->name_singular
+			),
+			'item_published_privately' => sprintf(
+				/* translators: %s: Singular post type name */
+				__( '%s published privately.', 'mind/types' ),
+				$this->name_singular
+			),
+			'item_reverted_to_draft'   => sprintf(
+				/* translators: %s: Singular post type name */
+				__( '%s reverted to draft.', 'mind/types' ),
+				$this->name_singular
+			),
+			'item_scheduled'           => sprintf(
+				/* translators: %s: Singular post type name */
+				__( '%s scheduled.', 'mind/types' ),
+				$this->name_singular
+			),
+			'item_updated'             => sprintf(
+				/* translators: %s: Singular post type name */
+				__( '%s updated.', 'mind/types' ),
+				$this->name_singular
+			),
+			'new_item'                 => sprintf(
+				/* translators: %s: Singular post type name */
+				__( 'New %s', 'mind/types' ),
+				$this->name_singular
+			),
+			'not_found'                => sprintf(
+				/* translators: %s: Plural post type name */
+				__( 'No %s found.', 'mind/types' ),
+				$this->name_plural
+			),
+			'not_found_in_trash'       => sprintf(
+				/* translators: %s: Plural post type name */
+				__( 'No %s found in Trash.', 'mind/types' ),
+				$this->name_plural
+			),
+			'parent_item'              => sprintf(
+				/* translators: %s: Singular post type name */
+				__( 'Parent %s', 'mind/types' ),
+				$this->name_singular
+			),
+			'parent_item_colon'        => sprintf(
+				/* translators: %s: Singular post type name */
+				__( 'Parent %s:', 'mind/types' ),
+				$this->name_singular
+			),
+			'search_items'             => sprintf(
+				/* translators: %s: Plural post type name */
+				__( 'Search %s', 'mind/types' ),
+				$this->name_plural
+			),
+			'uploaded_to_this_item'    => sprintf(
+				/* translators: %s: Singular post type name */
+				__( 'Uploaded to this %s', 'mind/types' ),
+				$this->name_singular
+			),
+			'view_item'                => sprintf(
+				/* translators: %s: Singular post type name */
+				__( 'View %s', 'mind/types' ),
+				$this->name_singular
+			),
+			'view_items'               => sprintf(
+				/* translators: %s: Plural post type name */
+				__( 'View %s', 'mind/types' ),
+				$this->name_plural
+			),
+			'menu_name'                => $this->name_plural,
+			'name_admin_bar'           => $this->name_singular,
 		];
-
-		return $labels;
 	}
 
 	/**

@@ -1,10 +1,11 @@
 # Types
 
-## 2.5.3 - 2020-08-12
+## 2.5.3 - 2020-08-18
 
 - Added a new `column_order` argument for the `admin_columns` option.
 - Added a new `image` type for the `admin_columns` option.
 - Added a new `custom` type for the `admin_columns` option.
+- Fixed a bug when updating the label for a custom post type didn’t work properly.
 
 ## 2.5.2 - 2020-07-29
 
