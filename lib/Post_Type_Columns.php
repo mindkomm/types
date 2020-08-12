@@ -187,6 +187,21 @@ class Post_Type_Columns {
 			$value = get_field( $column_name, $post_id );
 		} elseif ( 'meta' === $column['type'] ) {
 			$value = get_post_meta( $post_id, $column_name, true );
+		} elseif ( 'image' === $column['type'] ) {
+			$value = get_post_meta( $post_id, $column_name, true );
+
+			if ( is_numeric( $value ) ) {
+				$src = wp_get_attachment_image_src(
+					$value,
+					$column['image_size'] ?? 'thumbnail'
+				);
+
+				if ( $src ) {
+					echo $this->column_content_image( $src[0], $column );
+
+					return;
+				}
+			}
 		}
 
 		if ( is_callable( $column['transform'] ) ) {
@@ -194,6 +209,32 @@ class Post_Type_Columns {
 		}
 
 		echo $value;
+	}
+
+	/**
+	 * Gets the HTML for the 'image' type.
+	 *
+	 * @param string $src  An image source.
+	 * @param array  $args An array of column arguments.
+	 *
+	 * @return string
+	 */
+	protected function column_content_image( $src, $args ) {
+		if ( empty( $src ) ) {
+			return '';
+		}
+
+		$styles = 'max-width: 100%;';
+
+		foreach ( [ 'width', 'height' ] as $attr ) {
+			if ( isset( $args[ $attr ] ) ) {
+				$styles .= $attr . ':' . esc_attr( $args[ $attr ] ) . 'px;';
+			}
+		}
+
+		$styles = ' style="' . $styles . '"';
+
+		return '<img src="' . esc_attr( $src ) . '"' . $styles . '>';
 	}
 
 	/**
