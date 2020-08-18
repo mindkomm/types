@@ -137,7 +137,7 @@ class Post_Type_Columns {
 	public function columns_sortable( $columns ) {
 		foreach ( $this->columns as $slug => $column ) {
 			// Remove column when it’s not sortable.
-			if ( ! $column['sortable'] ) {
+			if ( isset( $column['sortable'] ) && ! $column['sortable'] ) {
 				unset( $columns[ $slug ] );
 				continue;
 			} elseif ( ! isset( $columns[ $slug ] ) ) {

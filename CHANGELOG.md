@@ -1,5 +1,9 @@
 # Types
 
+## 2.5.4 - 2020-08-19
+
+- Fixed error notice.
+
 ## 2.5.3 - 2020-08-18
 
 - Added a new `column_order` argument for the `admin_columns` option.
