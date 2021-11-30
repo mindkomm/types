@@ -1,5 +1,9 @@
 # Types
 
+## 2.5.5 - 2021-11-30
+
+- Fixed a bug with orderby query parameters that are arrays.
+
 ## 2.5.4 - 2020-08-19
 
 - Fixed error notice.

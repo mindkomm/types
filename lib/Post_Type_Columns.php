@@ -162,6 +162,7 @@ class Post_Type_Columns {
 		if ( ! $query->is_main_query()
 			|| $typenow !== $this->post_type
 			|| empty( $orderby )
+			|| ! is_string( $orderby )
 			|| ! isset( $this->columns[ $orderby ] )
 			|| 'meta' !== $this->columns[ $orderby ]['type']
 		) {
