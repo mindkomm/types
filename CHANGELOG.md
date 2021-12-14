@@ -1,5 +1,9 @@
 # Types
 
+## 2.5.6 - 2021-12
+
+- Improved default compatibility with custom permalink structure when using the `page_for_archive` option.
+
 ## 2.5.5 - 2021-11-30
 
 - Fixed a bug with orderby query parameters that are arrays.

@@ -106,6 +106,22 @@ class Post_Type_Page {
 
 		$args['has_archive'] = $link;
 
+		/**
+		 * Make sure with_front is set to false by default.
+		 *
+		 * If you set a custom permalink base in Settings → Permalink, then that permalink is
+		 * prepended to all the custom post types that have with_front set to true. For example:
+		 *
+		 * If you have a post type called book and set /blog/%postname%/ as your permalink
+		 * structure, then /blog/ will be prepended to your custom post type, which will result in
+		 * /blog/book/.
+		 *
+		 * Mostly, this is not what we want and why we set with_front to false by default.
+		 */
+		$args['rewrite'] = wp_parse_args( $args['rewrite'] ?? [], [
+			'with_front' => false,
+		] );
+
 		return $args;
 	}
 
