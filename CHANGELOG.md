@@ -2,6 +2,7 @@
 
 ## 2.5.6 - 2022-10-12
 
+- Fixed return type for label filter.
 - Fixed bugs when trying to access column data on columns that are not arrays (e.g. when column is set to `false`).
 - Improved default compatibility with custom permalink structure when using the `page_for_archive` option.
 

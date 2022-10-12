@@ -51,7 +51,7 @@ class Post_Type_Labels {
 	 */
 	public function init() {
 		add_filter( "post_type_labels_{$this->post_type}", function() {
-			return $this->get_labels();
+			return (object) $this->get_labels();
 		} );
 
 		if ( is_admin() ) {
