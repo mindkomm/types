@@ -141,7 +141,7 @@ class Post_Type_Columns {
 				unset( $columns[ $slug ] );
 				continue;
 			} elseif ( ! isset( $columns[ $slug ] ) ) {
-				if ( 'meta' === $column['type'] ) {
+				if ( ! empty( $column['type'] ) && 'meta' === $column['type'] ) {
 					$columns[ $slug ] = $slug;
 				}
 			}
@@ -290,7 +290,7 @@ class Post_Type_Columns {
 		}
 
 		$meta_columns = array_filter( $this->columns, function( $column ) {
-			return 'meta' === $column['type'] && $column['searchable'];
+			return ! empty( $column ) && 'meta' === $column['type'] && $column['searchable'];
 		} );
 
 		// Bail out and use default search if no searchable meta columns are defined.

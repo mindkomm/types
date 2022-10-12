@@ -1,7 +1,8 @@
 # Types
 
-## 2.5.6 - 2021-12
+## 2.5.6 - 2022-10-12
 
+- Fixed bugs when trying to access column data on columns that are not arrays (e.g. when column is set to `false`).
 - Improved default compatibility with custom permalink structure when using the `page_for_archive` option.
 
 ## 2.5.5 - 2021-11-30
