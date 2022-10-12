@@ -2,7 +2,7 @@
 
 Custom Post Types and Taxonomy helper classes for WordPress projects.
 
-- Register Custom Post Types and Taxonomies through an array notation. Labels will be set accordingly. Currently, English and German languages are supported.
+- Register Custom Post Types and Taxonomies through an array notation. Labels will be set accordingly. Currently, English, German and Dutch are supported.
 - Change the query arguments for posts in the front- and backend via a list of arguments, e.g. to set a custom post order wit the [`query`](#query) option.
 - Change the admin columns for posts in the backend via a list of arguments.
 - Set a specific page as the archive page for a custom post type with the [`page_for_archive`](#page_for_archive) option.
