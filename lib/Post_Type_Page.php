@@ -95,11 +95,12 @@ class Post_Type_Page {
 		$link = get_permalink( $this->post_id );
 
 		/**
-		 * We need to strip away the current base URL from the link, so that we get the relative
-		 * link. It’s not enough to use wp_make_link_relative(), because then WordPress websites in
-		 * subfolders wouldn’t work. This is often the case in multisite environments.
+		 * We need to strip away the current base URL from the link, so that we
+		 * get the relative link. It’s not enough to use wp_make_link_relative(),
+		 * because then WordPress websites in subfolders wouldn’t work. This is
+		 * often the case in multisite environments.
 		 */
-		$link = str_replace( site_url(), '', $link );
+		$link = str_replace( home_url(), '', $link );
 
 		// Trim leading and trailing slashes.
 		$link = trim( $link, '/' );
