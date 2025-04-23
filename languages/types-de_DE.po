@@ -3,49 +3,194 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-28T09:32:42+02:00\n"
-"PO-Revision-Date: 2019-06-28 09:32+0200\n"
+"POT-Creation-Date: 2025-04-23T15:32:16+02:00\n"
+"PO-Revision-Date: 2025-04-23 15:32+0200\n"
 "Last-Translator: Lukas Gächter <lukas.gaechter@mind.ch>\n"
 "Language-Team: \n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.3\n"
-"X-Domain: mind/types\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.6\n"
+"X-Domain: mind/types\n"
+
+#: lib/Post_Type_Columns.php:37
+msgid "Featured Image"
+msgstr "Beitragsbild"
+
+#: lib/Post_Type_Labels.php:77
+msgid "Add New"
+msgstr "Hinzufügen"
+
+#. translators: %s: Singular post type name
+#. translators: %s: Singular taxonomy name
+#: lib/Post_Type_Labels.php:80 lib/Taxonomy_Labels.php:87
+msgid "Add New %s"
+msgstr "%s hinzufügen"
+
+#. translators: %s: Plural post type name
+#. translators: %s: Plural taxonomy name
+#: lib/Post_Type_Labels.php:85 lib/Taxonomy_Labels.php:91
+msgid "All %s"
+msgstr "Alle %s"
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:90 lib/Taxonomy_Labels.php:93
+msgid "%s Archives"
+msgstr "Archive für %s"
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:95
+msgid "%s Attributes"
+msgstr "Attribute für %s"
+
+#. translators: %s: Singular post type name
+#. translators: %s: Singular taxonomy name
+#: lib/Post_Type_Labels.php:100 lib/Taxonomy_Labels.php:99
+msgid "Edit %s"
+msgstr "%s bearbeiten"
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:105
+msgid "Featured Image for %s"
+msgstr "Beitragsbild für %s"
+
+#. translators: %s: Plural post type name
+#: lib/Post_Type_Labels.php:110
+msgid "Filter %s list"
+msgstr "% filtern"
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:115
+msgid "Insert into %s"
+msgstr "In %s einfügen"
+
+#. translators: %s: Plural post type name
+#. translators: %s: Plural taxonomy name
+#: lib/Post_Type_Labels.php:120 lib/Taxonomy_Labels.php:101
+msgid "%s list"
+msgstr "%s"
+
+#. translators: %s: Plural post type name
+#. translators: %s: Plural taxonomy name
+#: lib/Post_Type_Labels.php:125 lib/Taxonomy_Labels.php:103
+msgid "%s list navigation"
+msgstr "Navigation für %s"
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:130 lib/Post_Type_Labels.php:251
+msgid "%s published."
+msgstr "%s veröffentlicht."
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:135
+msgid "%s published privately."
+msgstr "%s privat veröffentlicht."
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:140
+msgid "%s reverted to draft."
+msgstr "%s auf Entwurf zurückgesetzt."
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:145
+msgid "%s trashed."
+msgstr "%s in den Papierkorb verschoben."
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:150
+msgid "%s scheduled."
+msgstr "%s geplant."
+
+#. translators: %s: Singular post type name
+#. translators: %s: Singular taxonomy name
+#: lib/Post_Type_Labels.php:155 lib/Post_Type_Labels.php:247
+#: lib/Post_Type_Labels.php:249 lib/Taxonomy_Labels.php:148
+msgid "%s updated."
+msgstr "%s aktualisiert."
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:160
+msgid "New %s"
+msgstr "%s hinzufügen"
+
+#. translators: %s: Plural post type name
+#. translators: %s: Plural taxonomy name
+#: lib/Post_Type_Labels.php:165 lib/Taxonomy_Labels.php:109
+msgid "No %s found."
+msgstr "Keine %s gefunden."
+
+#. translators: %s: Plural post type name
+#: lib/Post_Type_Labels.php:170
+msgid "No %s found in trash."
+msgstr "Keine %s im Papierkorb gefunden."
+
+#. translators: %s: Singular post type name
+#. translators: %s: Singular taxonomy name
+#: lib/Post_Type_Labels.php:175 lib/Taxonomy_Labels.php:111
+msgid "Parent %s"
+msgstr "Eltern-%s"
+
+#. translators: %s: Singular post type name
+#. translators: %s: Singular taxonomy name
+#: lib/Post_Type_Labels.php:180 lib/Taxonomy_Labels.php:113
+msgid "Parent %s:"
+msgstr "Eltern-%s:"
+
+#. translators: %s: Plural post type name
+#. translators: %s: Plural taxonomy name
+#: lib/Post_Type_Labels.php:185 lib/Taxonomy_Labels.php:117
+msgid "Search %s"
+msgstr "%s suchen"
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:190
+msgid "Uploaded to this %s"
+msgstr "Zu diesem %s hochgeladen"
+
+#. translators: %s: Singular post type name
+#. translators: %s: Plural post type name
+#. translators: %s: Singular taxonomy name
+#: lib/Post_Type_Labels.php:195 lib/Post_Type_Labels.php:200
+#: lib/Post_Type_Labels.php:237 lib/Taxonomy_Labels.php:123
+msgid "View %s"
+msgstr "%s anschauen"
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:228
+msgid "Preview %s"
+msgstr "%s-Vorschau ansehen"
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:253
+msgid "%s saved."
+msgstr "%s gespeichert."
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:255
+msgid "%s submitted."
+msgstr "%s übertragen."
+
+#. translators: %s: Singular post type name
+#: lib/Post_Type_Labels.php:257
+msgid "%s draft updated."
+msgstr "%s-Entwurf aktualisiert."
 
 #. translators: Plural name of the post type
-#: lib/Post_Type_Page.php:153
+#: lib/Post_Type_Page.php:233
 msgid "Edit page for %s"
 msgstr "Seite für %s bearbeiten"
 
 #. translators: Post type label.
-#: lib/Post_Type_Page_Option.php:107 lib/Post_Type_Page_Option.php:159
+#: lib/Post_Type_Page_Option.php:86 lib/Post_Type_Page_State.php:60
 msgid "Page for %s"
 msgstr "Seite für %s"
-
-#. translators: %s: Singular taxonomy name
-#. translators: %s: Singular post type name
-#: lib/Taxonomy_Labels.php:87 lib/Post_Type_Labels.php:90
-msgid "Add New %s"
-msgstr "%s hinzufügen"
 
 #. translators: %s: Plural taxonomy name
 #: lib/Taxonomy_Labels.php:89
 msgid "Add or remove %s"
 msgstr "%s hinzufügen oder entfernen"
-
-#. translators: %s: Plural taxonomy name
-#. translators: %s: Plural post type name
-#: lib/Taxonomy_Labels.php:91 lib/Post_Type_Labels.php:92
-msgid "All %s"
-msgstr "Alle %s"
-
-#. translators: %s: Singular post type name
-#: lib/Taxonomy_Labels.php:93 lib/Post_Type_Labels.php:94
-msgid "%s Archives"
-msgstr "Archive für %s"
 
 #. translators: %s: Plural taxonomy name
 #: lib/Taxonomy_Labels.php:95
@@ -58,24 +203,6 @@ msgid "Choose from the most used %s"
 msgstr "Wähle aus den am häufigsten verwendeten %s"
 
 #. translators: %s: Singular taxonomy name
-#. translators: %s: Singular post type name
-#: lib/Taxonomy_Labels.php:99 lib/Post_Type_Labels.php:98
-msgid "Edit %s"
-msgstr "%s bearbeiten"
-
-#. translators: %s: Plural taxonomy name
-#. translators: %s: Plural post type name
-#: lib/Taxonomy_Labels.php:101 lib/Post_Type_Labels.php:106
-msgid "%s list"
-msgstr "%s"
-
-#. translators: %s: Plural taxonomy name
-#. translators: %s: Plural post type name
-#: lib/Taxonomy_Labels.php:103 lib/Post_Type_Labels.php:108
-msgid "%s list navigation"
-msgstr "Navigation für %s"
-
-#. translators: %s: Singular taxonomy name
 #: lib/Taxonomy_Labels.php:105
 msgid "New %s Name"
 msgstr "Neuer Name für %s"
@@ -86,33 +213,9 @@ msgid "No %s"
 msgstr "Keine %s"
 
 #. translators: %s: Plural taxonomy name
-#. translators: %s: Plural post type name
-#: lib/Taxonomy_Labels.php:109 lib/Post_Type_Labels.php:122
-msgid "No %s found."
-msgstr "Keine %s gefunden."
-
-#. translators: %s: Singular taxonomy name
-#. translators: %s: Singular post type name
-#: lib/Taxonomy_Labels.php:111 lib/Post_Type_Labels.php:126
-msgid "Parent %s"
-msgstr "Eltern-%s"
-
-#. translators: %s: Singular taxonomy name
-#. translators: %s: Singular post type name
-#: lib/Taxonomy_Labels.php:113 lib/Post_Type_Labels.php:128
-msgid "Parent %s:"
-msgstr "Eltern-%s:"
-
-#. translators: %s: Plural taxonomy name
 #: lib/Taxonomy_Labels.php:115
 msgid "Popular %s"
 msgstr "Beliebte %s"
-
-#. translators: %s: Plural taxonomy name
-#. translators: %s: Plural post type name
-#: lib/Taxonomy_Labels.php:117 lib/Post_Type_Labels.php:130
-msgid "Search %s"
-msgstr "%s suchen"
 
 #. translators: %s: Plural taxonomy name
 #: lib/Taxonomy_Labels.php:119
@@ -123,14 +226,6 @@ msgstr "%s mit Komma trennen"
 #: lib/Taxonomy_Labels.php:121
 msgid "Update %s"
 msgstr "%s aktualisieren"
-
-#. translators: %s: Singular taxonomy name
-#. translators: %s: Singular post type name
-#. translators: %s: Plural post type name
-#: lib/Taxonomy_Labels.php:123 lib/Post_Type_Labels.php:134
-#: lib/Post_Type_Labels.php:136 lib/Post_Type_Labels.php:173
-msgid "View %s"
-msgstr "%s anschauen"
 
 #. translators: %s: Singular taxonomy name
 #: lib/Taxonomy_Labels.php:144
@@ -144,13 +239,6 @@ msgid "%s deleted."
 msgstr "%s gelöscht."
 
 #. translators: %s: Singular taxonomy name
-#. translators: %s: Singular post type name
-#: lib/Taxonomy_Labels.php:148 lib/Post_Type_Labels.php:118
-#: lib/Post_Type_Labels.php:183 lib/Post_Type_Labels.php:185
-msgid "%s updated."
-msgstr "%s aktualisiert."
-
-#. translators: %s: Singular taxonomy name
 #: lib/Taxonomy_Labels.php:150
 msgid "%s not added."
 msgstr "%s nicht hinzugefügt."
@@ -159,89 +247,6 @@ msgstr "%s nicht hinzugefügt."
 #: lib/Taxonomy_Labels.php:152
 msgid "%s not updated."
 msgstr "%s nicht aktualisiert."
-
-#: lib/Post_Type_Columns.php:37
-msgid "Featured Image"
-msgstr "Beitragsbild"
-
-#: lib/Post_Type_Labels.php:88
-msgid "Add New"
-msgstr "Hinzufügen"
-
-#. translators: %s: Singular post type name
-#: lib/Post_Type_Labels.php:96
-msgid "%s Attributes"
-msgstr "Attribute für %s"
-
-#. translators: %s: Singular post type name
-#: lib/Post_Type_Labels.php:100
-msgid "Featured Image for %s"
-msgstr "Beitragsbild für %s"
-
-#. translators: %s: Plural post type name
-#: lib/Post_Type_Labels.php:102
-msgid "Filter %s list"
-msgstr "% filtern"
-
-#. translators: %s: Singular post type name
-#: lib/Post_Type_Labels.php:104
-msgid "Insert into %s"
-msgstr "In %s einfügen"
-
-#. translators: %s: Singular post type name
-#: lib/Post_Type_Labels.php:110 lib/Post_Type_Labels.php:187
-msgid "%s published."
-msgstr "%s veröffentlicht."
-
-#. translators: %s: Singular post type name
-#: lib/Post_Type_Labels.php:112
-msgid "%s published privately."
-msgstr "%s privat veröffentlicht."
-
-#. translators: %s: Singular post type name
-#: lib/Post_Type_Labels.php:114
-msgid "%s reverted to draft."
-msgstr "%s auf Entwurf zurückgesetzt."
-
-#. translators: %s: Singular post type name
-#: lib/Post_Type_Labels.php:116
-msgid "%s scheduled."
-msgstr "%s geplant."
-
-#. translators: %s: Singular post type name
-#: lib/Post_Type_Labels.php:120
-msgid "New %s"
-msgstr "%s hinzufügen"
-
-#. translators: %s: Plural post type name
-#: lib/Post_Type_Labels.php:124
-msgid "No %s found in Trash."
-msgstr "Keine %s im Papierkorb gefunden."
-
-#. translators: %s: Singular post type name
-#: lib/Post_Type_Labels.php:132
-msgid "Uploaded to this %s"
-msgstr "Zu diesem %s hochgeladen"
-
-#. translators: %s: Singular post type name
-#: lib/Post_Type_Labels.php:164
-msgid "Preview %s"
-msgstr "%s-Vorschau ansehen"
-
-#. translators: %s: Singular post type name
-#: lib/Post_Type_Labels.php:189
-msgid "%s saved."
-msgstr "%s gespeichert."
-
-#. translators: %s: Singular post type name
-#: lib/Post_Type_Labels.php:191
-msgid "%s submitted."
-msgstr "%s übertragen."
-
-#. translators: %s: Singular post type name
-#: lib/Post_Type_Labels.php:193
-msgid "%s draft updated."
-msgstr "%s-Entwurf aktualisiert."
 
 #~ msgid "%s page"
 #~ msgstr "%s-Seite"

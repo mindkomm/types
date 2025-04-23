@@ -140,6 +140,11 @@ class Post_Type_Labels {
 				__( '%s reverted to draft.', 'mind/types' ),
 				$this->name_singular
 			),
+			'item_trashed' => sprintf(
+				/* translators: %s: Singular post type name */
+				__( '%s trashed.', 'mind/types' ),
+				$this->name_singular
+			),
 			'item_scheduled'           => sprintf(
 				/* translators: %s: Singular post type name */
 				__( '%s scheduled.', 'mind/types' ),
@@ -162,7 +167,7 @@ class Post_Type_Labels {
 			),
 			'not_found_in_trash'       => sprintf(
 				/* translators: %s: Plural post type name */
-				__( 'No %s found in Trash.', 'mind/types' ),
+				__( 'No %s found in trash.', 'mind/types' ),
 				$this->name_plural
 			),
 			'parent_item'              => sprintf(
