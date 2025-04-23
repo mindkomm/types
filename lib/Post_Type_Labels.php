@@ -167,7 +167,7 @@ class Post_Type_Labels {
 			),
 			'not_found_in_trash'       => sprintf(
 				/* translators: %s: Plural post type name */
-				__( 'No %s found in Trash.', 'mind/types' ),
+				__( 'No %s found in trash.', 'mind/types' ),
 				$this->name_plural
 			),
 			'parent_item'              => sprintf(
