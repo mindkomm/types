@@ -1,10 +1,21 @@
+name: Release
+
 on:
   push:
     branches:
       - main
 
-name: CI
+permissions:
+  contents: write
+  pull-requests: write
 
 jobs:
   release:
-    uses: mindkomm/workflows/.github/workflows/release.yml@main
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: googleapis/release-please-action@v4
+        with:
+          target-branch: ${{ github.ref_name }}
+          config-file: release-please-config.json
+          manifest-file: .release-please-manifest.json
