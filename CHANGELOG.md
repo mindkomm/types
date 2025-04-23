@@ -1,5 +1,13 @@
 # Types
 
+## [2.5.7](https://github.com/mindkomm/types/compare/2.5.6...v2.5.7) (2025-04-23)
+
+
+### Bug Fixes
+
+* Fix a bug with environments where site_url() is different to home_url() ([#9](https://github.com/mindkomm/types/issues/9)) ([77ee7f7](https://github.com/mindkomm/types/commit/77ee7f75d2e1550093383c42c58225313d37f6d0))
+* **i18n:** Update post type labels ([#10](https://github.com/mindkomm/types/issues/10)) ([6d3c6d6](https://github.com/mindkomm/types/commit/6d3c6d64da9a7e2407ba6ce1e5758217e323b5a6))
+
 ## 2.5.6 - 2022-10-13
 
 - Fixed return type for label filter.
