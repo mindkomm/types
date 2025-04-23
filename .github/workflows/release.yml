@@ -1,0 +1,10 @@
+on:
+  push:
+    branches:
+      - main
+
+name: CI
+
+jobs:
+  release:
+    uses: mindkomm/workflows/.github/workflows/release.yml@main
