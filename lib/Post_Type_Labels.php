@@ -215,6 +215,10 @@ class Post_Type_Labels {
 	 * @return array The filtered messages.
 	 */
 	public function add_post_updated_messages( $messages ) {
+        if (!post_type_exists($this->post_type)) {
+            return $messages;
+        }
+
 		global $post_id;
 
 		$preview_url = get_preview_post_link( $post_id );

@@ -85,10 +85,6 @@ class Post_Type {
 	 * @param string $name_plural   The new plural name.
 	 */
 	public static function rename( $post_type, $name_singular, $name_plural ) {
-		if ( ! post_type_exists( $post_type ) ) {
-			return;
-		}
-
 		( new Post_Type_Labels( $post_type, $name_singular, $name_plural ) )->init();
 	}
 
