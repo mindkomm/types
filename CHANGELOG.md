@@ -1,5 +1,12 @@
 # Types
 
+## [2.5.8](https://github.com/mindkomm/types/compare/v2.5.7...v2.5.8) (2025-12-12)
+
+
+### Bug Fixes
+
+* Fix a bug when post types couldn’t be renamed ([4a33bb2](https://github.com/mindkomm/types/commit/4a33bb2634b4f32d2a39524b61830db7b17fa283))
+
 ## [2.5.7](https://github.com/mindkomm/types/compare/2.5.6...v2.5.7) (2025-04-23)
 
 
