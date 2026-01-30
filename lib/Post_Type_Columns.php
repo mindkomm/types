@@ -121,6 +121,10 @@ class Post_Type_Columns {
 		$sorted = wp_list_sort( $sorted, 'column_order', 'ASC', true );
 
 		foreach ( $sorted as $slug => $column ) {
+            if ( empty( $column['title'] ) ) {
+                continue;
+            }
+
 			$return[ $slug ] = $column['title'];
 		}
 
