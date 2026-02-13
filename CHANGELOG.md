@@ -1,5 +1,12 @@
 # Types
 
+## [2.5.9](https://github.com/mindkomm/types/compare/v2.5.8...v2.5.9) (2026-01-30)
+
+
+### Bug Fixes
+
+* Fix a bug with sortable columns when a column has no title ([510611b](https://github.com/mindkomm/types/commit/510611bc6d08ef496b818f2ffca58e4806affc51))
+
 ## [2.5.8](https://github.com/mindkomm/types/compare/v2.5.7...v2.5.8) (2025-12-12)
 
 
