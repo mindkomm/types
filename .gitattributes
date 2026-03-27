@@ -1,0 +1,7 @@
+# Export ignores for Composer releases
+.gitattributes export-ignore
+.gitignore export-ignore
+.github/ export-ignore
+.release-please-manifest.json export-ignore
+release-please-config.json export-ignore
+CHANGELOG.md export-ignore
