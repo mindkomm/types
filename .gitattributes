@@ -1,0 +1,10 @@
+/.git-blame-ignore-revs         export-ignore
+/.gitattributes                 export-ignore
+/.github                        export-ignore
+/.editorconfig                  export-ignore
+/.gitignore                     export-ignore
+/phpcs.xml                      export-ignore
+/phpstan.neon                   export-ignore
+/phpunit.xml                    export-ignore
+/.release-please-manifest.json  export-ignore
+/release-please-config.json     export-ignore
