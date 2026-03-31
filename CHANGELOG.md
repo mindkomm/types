@@ -1,5 +1,17 @@
 # Types
 
+## [2.6.0](https://github.com/mindkomm/types/compare/v2.5.9...v2.6.0) (2026-03-31)
+
+
+### Features
+
+* Use early hook to make loading languges work in all cases ([#16](https://github.com/mindkomm/types/issues/16)) ([db84e81](https://github.com/mindkomm/types/commit/db84e81d198e7c27096d2e1768c69c63e0d14aed)), closes [#14](https://github.com/mindkomm/types/issues/14)
+
+
+### Bug Fixes
+
+* Correct function name from load_theme_textdomain to load_textdomain ([d68d5a4](https://github.com/mindkomm/types/commit/d68d5a487e541a1a212d8ee5c6c9e7b5146a27b9))
+
 ## [2.5.9](https://github.com/mindkomm/types/compare/v2.5.8...v2.5.9) (2026-01-30)
 
 
