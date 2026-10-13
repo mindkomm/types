@@ -145,7 +145,7 @@ class Post_Type_Columns {
 				unset( $columns[ $slug ] );
 				continue;
 			} elseif ( ! isset( $columns[ $slug ] ) ) {
-				if ( ! empty( $column['type'] ) && 'meta' === $column['type'] ) {
+				if ( ! empty( $column['type'] ) && in_array( $column['type'], [ 'meta', 'acf', 'custom' ], true ) ) {
 					$columns[ $slug ] = $slug;
 				}
 			}
@@ -168,15 +168,32 @@ class Post_Type_Columns {
 			|| empty( $orderby )
 			|| ! is_string( $orderby )
 			|| ! isset( $this->columns[ $orderby ] )
-			|| 'meta' !== $this->columns[ $orderby ]['type']
+			|| empty( $this->columns[ $orderby ]['sortable'] )
+			|| ! in_array( $this->columns[ $orderby ]['type'], [ 'meta', 'acf', 'custom' ], true )
 		) {
 			return;
 		}
 
 		$new_orderby = $this->columns[ $orderby ]['orderby'];
+		$meta_key    = $this->columns[ $orderby ]['meta_key'] ?? $orderby;
 
-		$query->set( 'orderby', $new_orderby );
-		$query->set( 'meta_key', $orderby );
+		// Keep posts without the meta row in the list instead of dropping them.
+		$query->set( 'meta_query', [
+			'relation'        => 'OR',
+			'types_sort_meta' => [
+				'key'     => $meta_key,
+				'compare' => 'EXISTS',
+			],
+			[
+				'key'     => $meta_key,
+				'compare' => 'NOT EXISTS',
+			],
+		] );
+		$query->set( 'orderby', 'meta_value' === $new_orderby ? 'types_sort_meta' : $new_orderby );
+
+		if ( 'meta_value' !== $new_orderby ) {
+			$query->set( 'meta_key', $meta_key );
+		}
 	}
 
 	/**
@@ -237,11 +254,15 @@ class Post_Type_Columns {
 					return;
 				}
 			}
-		} elseif ( 'custom' === $column['type'] && is_callable( $column['value'] ) ) {
-			$value = call_user_func( $column['value'], $post_id );
+		} elseif ( 'custom' === $column['type'] ) {
+			if ( isset( $column['value'] ) && is_callable( $column['value'] ) ) {
+				$value = call_user_func( $column['value'], $post_id );
+			} elseif ( ! empty( $column['meta_key'] ) ) {
+				$value = get_post_meta( $post_id, $column['meta_key'], true );
+			}
 		}
 
-		if ( in_array( $column['type'], [ 'meta', 'acf' ], true )
+		if ( in_array( $column['type'], [ 'meta', 'acf', 'custom' ], true )
 			&& is_callable( $column['transform'] )
 		) {
 			$value = call_user_func( $column['transform'], $value, $post_id );
