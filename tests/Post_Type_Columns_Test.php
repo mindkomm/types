@@ -29,6 +29,9 @@ class Post_Type_Columns_Test extends TestCase {
 
 		( new Post_Type_Columns( 'book', [
 			'date'        => false,
+			'title'       => [
+				'sortable' => false,
+			],
 			'book_author' => [
 				'title'      => 'Author',
 				'sortable'   => true,
@@ -39,6 +42,10 @@ class Post_Type_Columns_Test extends TestCase {
 				'sortable'  => true,
 				'orderby'   => 'meta_value_num',
 				'transform' => fn( $value ) => 'CHF ' . $value,
+			],
+			'edition'     => [
+				'title'    => 'Edition',
+				'sortable' => true,
 			],
 			'publisher'   => [
 				'title'        => 'Publisher',
@@ -57,18 +64,21 @@ class Post_Type_Columns_Test extends TestCase {
 				'price'       => '12.9',
 				'publisher'   => 'Chilton',
 				'page_count'  => '412',
+				'edition'     => '10',
 			],
 			'Neuromancer' => [
 				'book_author' => 'William Gibson',
 				'price'       => '9.5',
 				'publisher'   => 'Ace',
 				'page_count'  => '271',
+				'edition'     => '2',
 			],
 			'Hyperion'    => [
 				'book_author' => 'Dan Simmons',
 				'price'       => '105',
 				'publisher'   => 'Doubleday',
 				'page_count'  => '482',
+				'edition'     => '9',
 			],
 		];
 
@@ -112,7 +122,7 @@ class Post_Type_Columns_Test extends TestCase {
 		] );
 
 		$this->assertSame(
-			[ 'cb', 'publisher', 'title', 'book_author', 'price', 'length' ],
+			[ 'cb', 'publisher', 'title', 'book_author', 'price', 'edition', 'length' ],
 			array_keys( $columns )
 		);
 		$this->assertSame( 'Author', $columns['book_author'] );
@@ -123,8 +133,17 @@ class Post_Type_Columns_Test extends TestCase {
 
 		$this->assertArrayHasKey( 'book_author', $sortable );
 		$this->assertArrayHasKey( 'price', $sortable );
+		$this->assertArrayHasKey( 'edition', $sortable );
 		$this->assertArrayNotHasKey( 'publisher', $sortable );
 		$this->assertArrayNotHasKey( 'length', $sortable );
+	}
+
+	public function test_sortable_false_removes_existing_sortable_column(): void {
+		$sortable = apply_filters( 'manage_edit-book_sortable_columns', [
+			'title' => 'title',
+		] );
+
+		$this->assertArrayNotHasKey( 'title', $sortable );
 	}
 
 	public function test_sort_by_meta_column(): void {
@@ -144,6 +163,47 @@ class Post_Type_Columns_Test extends TestCase {
 			'orderby' => 'price',
 			'order'   => 'ASC',
 		] ) );
+
+		$this->assertSame( [ 'Hyperion', 'Dune', 'Neuromancer' ], $this->query_titles( [
+			'orderby' => 'price',
+			'order'   => 'DESC',
+		] ) );
+	}
+
+	public function test_sort_by_meta_column_sorts_numbers_as_strings_by_default(): void {
+		// '10' < '2' < '9' when compared as strings.
+		$this->assertSame( [ 'Dune', 'Neuromancer', 'Hyperion' ], $this->query_titles( [
+			'orderby' => 'edition',
+			'order'   => 'ASC',
+		] ) );
+	}
+
+	public function test_sort_by_meta_column_with_pagination(): void {
+		$args = [
+			'orderby'        => 'price',
+			'order'          => 'ASC',
+			'posts_per_page' => 2,
+		];
+
+		$this->assertSame( [ 'Neuromancer', 'Dune' ], $this->query_titles( $args ) );
+		$this->assertSame( [ 'Hyperion' ], $this->query_titles( $args + [ 'paged' => 2 ] ) );
+	}
+
+	public function test_sort_only_applies_to_the_post_type_screen(): void {
+		register_post_type( 'movie' );
+		set_current_screen( 'edit-movie' );
+
+		$query = new \WP_Query();
+
+		// phpcs:ignore WordPress.WP.GlobalVariablesOverride.Prohibited
+		$GLOBALS['wp_the_query'] = $query;
+
+		$query->query( [
+			'post_type' => 'movie',
+			'orderby'   => 'price',
+		] );
+
+		$this->assertStringNotContainsString( 'price', $query->request );
 	}
 
 	public function test_secondary_query_is_not_sorted(): void {
@@ -161,6 +221,14 @@ class Post_Type_Columns_Test extends TestCase {
 
 	public function test_search_also_matches_title(): void {
 		$this->assertSame( [ 'Dune' ], $this->query_titles( [ 's' => 'Dune' ] ) );
+	}
+
+	public function test_search_is_kept_when_sorting(): void {
+		$this->assertSame( [ 'Neuromancer' ], $this->query_titles( [
+			's'       => 'Gibson',
+			'orderby' => 'price',
+			'order'   => 'ASC',
+		] ) );
 	}
 
 	public function test_meta_column_content_with_transform(): void {
