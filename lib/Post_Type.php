@@ -29,7 +29,7 @@ class Post_Type {
 			self::register_extensions( $post_type, $args );
 
 			// Defaults for post registration.
-			$args = wp_parse_args( $args['args'], [
+			$args = wp_parse_args( $args['args'] ?? [], [
 				'description'       => $args['name_plural'],
 				'public'            => false,
 				'show_ui'           => true,

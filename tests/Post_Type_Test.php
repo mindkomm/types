@@ -35,7 +35,6 @@ class Post_Type_Test extends TestCase {
 		Post_Type::register( [
 			'note' => [
 				'name_singular' => 'Note',
-				'args'          => [],
 			],
 		] );
 
@@ -81,5 +80,25 @@ class Post_Type_Test extends TestCase {
 		$this->assertTrue( $taxonomy->hierarchical );
 		$this->assertSame( 'Genres', $taxonomy->labels->name );
 		$this->assertSame( 'Genre', $taxonomy->labels->singular_name );
+	}
+
+	public function test_register_taxonomy_defaults(): void {
+		Taxonomy::register( [
+			'mood' => [
+				'name_singular' => 'Mood',
+			],
+		] );
+
+		$this->assertTrue( taxonomy_exists( 'mood' ) );
+
+		$taxonomy = get_taxonomy( 'mood' );
+
+		$this->assertSame( [], $taxonomy->object_type );
+		$this->assertFalse( $taxonomy->public );
+		$this->assertFalse( $taxonomy->hierarchical );
+		$this->assertTrue( $taxonomy->show_ui );
+		$this->assertTrue( $taxonomy->show_admin_column );
+		// The plural name falls back to the singular name.
+		$this->assertSame( 'Mood', $taxonomy->labels->name );
 	}
 }
