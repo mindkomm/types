@@ -6,5 +6,8 @@
 /phpcs.xml                      export-ignore
 /phpstan.neon                   export-ignore
 /phpunit.xml                    export-ignore
+/phpunit.xml.dist               export-ignore
+/tests                          export-ignore
+/tmp                            export-ignore
 /.release-please-manifest.json  export-ignore
 /release-please-config.json     export-ignore

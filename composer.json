@@ -4,7 +4,7 @@
   "description": "Custom Post Type and Taxonomy helper classes for WordPress",
   "license": "MIT",
   "require": {
-    "php": "^8.2",
+    "php": "^8.3",
     "n5s/wp-hook-kit": "^1.0"
   },
   "autoload": {
@@ -15,8 +15,14 @@
       "autoload.php"
     ]
   },
+  "autoload-dev": {
+    "psr-4": {
+      "Types\\Tests\\": "tests/"
+    }
+  },
   "scripts": {
-    "i18n": "wp i18n make-pot . languages/types.pot --domain=mind/types"
+    "i18n": "wp i18n make-pot . languages/types.pot --domain=mind/types",
+    "test": "phpunit"
   },
   "authors": [
     {
@@ -24,5 +30,8 @@
       "email": "lukas.gaechter@mind.ch",
       "homepage": "https://www.mind.ch"
     }
-  ]
+  ],
+  "require-dev": {
+    "mantle-framework/testkit": "^1.22"
+  }
 }
