@@ -23,10 +23,10 @@ class Taxonomy {
 			$args = self::parse_args( $args );
 			self::register_extensions( $taxonomy, $args );
 
-			$for_post_types = $args['for_post_types'];
+			$for_post_types = $args['for_post_types'] ?? [];
 
 			// Defaults for taxonomy registration.
-			$args = wp_parse_args( $args['args'], [
+			$args = wp_parse_args( $args['args'] ?? [], [
 				'public'            => false,
 				'hierarchical'      => false,
 				'show_ui'           => true,
