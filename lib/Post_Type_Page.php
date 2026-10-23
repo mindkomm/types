@@ -153,9 +153,39 @@ class Post_Type_Page {
 	 */
 	public function template_redirect() {
 		if ( is_singular( $this->post_type ) ) {
-			wp_safe_redirect( get_post_type_archive_link( $this->post_type ), 301 );
+			// Use a temporary redirect in development to prevent browsers from caching it.
+			$status = 'development' === wp_get_environment_type() ? 302 : 301;
+
+			foreach ( $this->get_redirect_headers( $status ) as $name => $value ) {
+				header( "{$name}: {$value}" );
+			}
+
+			wp_safe_redirect( get_post_type_archive_link( $this->post_type ), $status );
 			exit;
 		}
+	}
+
+	/**
+	 * Gets the cache headers to send with the redirect to the post type archive page.
+	 *
+	 * Browsers cache permanent redirects. Changing the post type page setting won’t bust that
+	 * cache, which is why we limit how long a browser can cache the redirect.
+	 *
+	 * @param int $status The HTTP status code of the redirect.
+	 *
+	 * @return array<string, string> An associative array of header names and values.
+	 */
+	public function get_redirect_headers( int $status ): array {
+		if ( 301 !== $status ) {
+			return [];
+		}
+
+		$max_age = HOUR_IN_SECONDS;
+
+		return [
+			'Cache-Control' => 'max-age=' . $max_age,
+			'Expires'       => gmdate( 'D, d M Y H:i:s', time() + $max_age ) . ' GMT',
+		];
 	}
 
 	/**
