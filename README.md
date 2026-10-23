@@ -163,8 +163,9 @@ These are the possible arguments:
 - **title** – *(string)* The title to use for the column. Default empty.
 - **transform** – *(callable)* The function to use on the value that is displayed. The function defined here will get a `$value` parameter that you can transform. E.g., if you have a post ID saved in post meta, you could display the post’s title. Default `null`.
 - **type** – *(string)* The type for the column. One of `meta`, `acf`, `thumbnail`, `image` or `custom`. Default `meta`.
-- **sortable** – *(bool)* Whether the column is sortable. Default `false`.
+- **sortable** – *(bool)* Whether the column is sortable. Works for the `meta`, `acf` and `custom` types. Default `false`.
 - **orderby** – *(string)* What to order by when the `sortable` argument is used. You don’t need to provide a `meta_key` parameter, because it is automatically set. Default `meta_value`.
+- **meta_key** – *(string)* The meta key used for sorting (and for displaying `custom` columns that have no `value` callback). Defaults to the column name.
 - **searchable** – *(bool)* Whether the column is searchable. Will include the meta values when searching the post list. Only applied if using the default type `meta`. Default `false`.
 - **column_order** – *(int)* An order number to sort by. You can use this to change the order of your columns. Default `10`.
 
