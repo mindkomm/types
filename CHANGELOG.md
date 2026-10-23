@@ -1,5 +1,18 @@
 # Types
 
+## [2.7.0](https://github.com/mindkomm/types/compare/v2.6.0...v2.7.0) (2026-10-23)
+
+
+### Features
+
+* Add testing ([#19](https://github.com/mindkomm/types/issues/19)) ([6e6f634](https://github.com/mindkomm/types/commit/6e6f6344cc01dd25305678c780a26a105e5935ac))
+
+
+### Bug Fixes
+
+* Fix warnings when `args` are not passed ([#21](https://github.com/mindkomm/types/issues/21)) ([730c20e](https://github.com/mindkomm/types/commit/730c20e71ef1b8777fee203856252c4cb21b302f))
+* Prevent browsers from caching the post type page redirect indefinitely ([#23](https://github.com/mindkomm/types/issues/23)) ([f8723c3](https://github.com/mindkomm/types/commit/f8723c30015c3404d16e802b239a203c2ceff43a))
+
 ## [2.6.0](https://github.com/mindkomm/types/compare/v2.5.9...v2.6.0) (2026-03-31)
 
 
